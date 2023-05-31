@@ -5,9 +5,10 @@ import './styleAll.css'
 import NavBar from './NavBar'
 import Footer from './Footer'
 import axios from "axios";
-
+import { useParams } from 'react-router-dom';
 
 const FormationSingle = () => {
+  const { idFormation } = useParams();
     const [course, setCourses] = useState([]);
     const [objectives, setobjectives] = useState([]);
     const [Comments, setComments] = useState([]);
@@ -18,13 +19,13 @@ const FormationSingle = () => {
     const userInformation = JSON.parse(localStorage.getItem('user')); 
     useEffect(() => {
         fetchUserCourses()
-        setcourse_id1(1)
+        setcourse_id1(idFormation)
         setcompte_id1(userInformation.id)
     }, []);
   
     const fetchUserCourses = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/formation/1`, {
+        const response = await axios.get(`http://127.0.0.1:8000/api/formation/${idFormation}`, {
           headers: {
           },
         });
@@ -114,7 +115,7 @@ const FormationSingle = () => {
                 {/* EVENT SINGLE
             ================================================== */}
                 <div className="sk-thumbnail img-ratio-7">
-                <img src={`../${course.image}`} alt="..." className="img-fluid" />
+                <img src={`/../${course.image}`} alt="..." className="img-fluid" />
                 </div>
                 <div className="container">
                 <div className="row">

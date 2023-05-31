@@ -13,7 +13,6 @@ import Institut from './views/Espace_User/Institut'
 import ContactUs from './views/Espace_User/ContactUs'
 import FAQ from './views/Espace_User/FAQ'
 import CourseSingle from './views/Espace_User/CourseSingle'
-import ShopCourses from './views/Espace_User/shopCourses'
 import WatchCourse from './views/Espace_User/WatchCourse'
 import AllFormation from './views/Espace_User/AllFormation';
 import FormationSingle from './views/Espace_User/FormationSingle';
@@ -28,8 +27,7 @@ export default function App(){
         <Route element={<About/>} exact path="/About" />
         <Route element={<Home/>}  path="/" />
         <Route element={<Contact/>} exact path="/Contact" />
-
-
+        
         
               <Route element={<Index/>}  path="/Espace_User/" />
               <Route element={<LatestCours/>}  path="/Espace_User/LatestCours" />
@@ -39,11 +37,10 @@ export default function App(){
               <Route element={<Institut/>}  path="/Espace_User/Institut" />
               <Route element={<ContactUs/>}  path="/Espace_User/ContactUs" />
               <Route element={<FAQ/>}  path="/Espace_User/FAQ" />
-              <Route element={<CourseSingle/>}  path="/Espace_User/CourseSingle" />
-              <Route element={<ShopCourses/>}  path="/Espace_User/shopCourses" />
+              <Route element={<CourseSingle/>}  path="/Espace_User/CourseSingle/:idCourse" />
               <Route element={<WatchCourse/>}  path="/Espace_User/WatchCourse" />
               <Route element={<AllFormation/>}  path="/Espace_User/AllFormation" />
-              <Route element={<FormationSingle/>}  path="/Espace_User/FormationSingle" />
+              <Route element={<FormationSingle/>}  path="/Espace_User/FormationSingle/:idFormation" />
               <Route element={<Quiz/>}  path="/Espace_User/CourseSingle/Quiz" />
 
 

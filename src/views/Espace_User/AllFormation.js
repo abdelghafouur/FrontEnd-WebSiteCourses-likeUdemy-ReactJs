@@ -257,13 +257,13 @@ const AllFormation = () => {
                       <div className="card border shadow p-2 lift">
                         <div className="row gx-0 align-items-center">
                           {/* Image */}
-                          <a href="event-single.html" className="col-auto d-block mw-md-152" style={{maxWidth: '120px'}}>
+                         <Link to={`/Espace_User/FormationSingle/${formation.id}`}  className="col-auto d-block mw-md-152" style={{maxWidth: '120px'}}>
                             <img className="img-fluid rounded shadow-light-lg h-100 h-md-auto o-f-c" src={`../${formation.image}`} alt="..." />
-                          </a>
+                          </Link>
                           {/* Body */}
                           <div className="col">
                             <div className="card-body py-0 px-md-5 px-3">
-                              <a href="event-single.html" className="d-block mb-2"><h5 className="line-clamp-2 h-xl-52">{formation.title}</h5></a>
+                            <Link to={`/Espace_User/FormationSingle/${formation.id}`}  className="d-block mb-2"><h5 className="line-clamp-2 h-xl-52">{formation.title}</h5></Link>
                               <ul className="nav mx-n3 d-block d-md-flex">
                                 <li className="nav-item px-3 mb-3 mb-md-0">
                                   <div className="d-flex align-items-center">
@@ -292,12 +292,12 @@ const AllFormation = () => {
                               </ul>
                             </div>
                           </div>
-                          <a href="event-single.html" className="col-auto rounded-lg d-none d-md-flex w-100p h-100p place-center bg-dark me-5">
+                         <Link to={`/Espace_User/FormationSingle/${formation.id}`}  className="col-auto rounded-lg d-none d-md-flex w-100p h-100p place-center bg-dark me-5">
                             <div className="w-100 text-center">
                               <h3 className="text-white mb-0 fw-semi-bold font-size-xxl">{new Date(formation.date).toLocaleDateString('en-US', { day: 'numeric' })}</h3>
                               <span className="h4 mb-0 text-white fw-normal">{new Date(formation.date).toLocaleDateString('en-US', { month: 'long'})}</span>
                             </div>
-                          </a>
+                            </Link>
                         </div>
                       </div>
                     </div>

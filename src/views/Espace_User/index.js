@@ -438,7 +438,7 @@ const Index = () => {
               {/* Navigation */}
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item dropdown dropdown-full-width">
-                <Link to="/" className="nav-link px-xl-4">
+                <Link to="/Espace_User/" className="nav-link px-xl-4">
                     Home
                   </Link>
                 </li>
@@ -448,34 +448,34 @@ const Index = () => {
                   </a>
                   <ul className="dropdown-menu border-xl shadow-none" aria-labelledby="navbarShop">
                     <li className="dropdown-item">
-                    <Link to="/Allcourses" className="dropdown-link">
+                    <Link to="/Espace_User/Allcourses" className="dropdown-link">
                         All Categories
                     </Link>
                     </li>
                     <li className="dropdown-item">
-                      <Link to="/LatestCours" className="dropdown-link">
+                      <Link to="/Espace_User/LatestCours" className="dropdown-link">
                       Latest Cours
                     </Link>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/MyCoures" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/MyCoures" className="nav-link px-xl-4">
                   My Coures
                     </Link>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/Institut" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/Institut" className="nav-link px-xl-4">
                   Institut
                     </Link>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/ContactUs" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/ContactUs" className="nav-link px-xl-4">
                   Contact Us
                     </Link>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/FAQ" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/FAQ" className="nav-link px-xl-4">
                   FAQ
                     </Link>
                 </li>
@@ -483,16 +483,6 @@ const Index = () => {
             </div>
             {/* Search, Account & Cart */}
             <ul className="navbar-nav flex-row ms-auto ms-xl-0 me-n2 me-md-n4 align-items-center">
-              <li className="nav-item border-0 px-0">
-                {/* Button trigger cart modal */}
-                <Link to="/shopCourses" className="nav-link d-flex px-3 px-md-4 position-relative text-white-all icon-xs">
-                  <span className="badge badge-white text-primary rounded-circle fw-bold badge-float mt-n1 ms-n2 px-0 w-16" style={{fontSize: '8px'}}>2</span>
-                  {/* Icon */}
-                  <svg width={13} height={15} viewBox="0 0 13 15" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.2422 3.51562H10.4567C10.2239 1.53873 8.53839 0 6.5 0C4.46161 0 2.7761 1.53873 2.54334 3.51562H0.757812C0.434199 3.51562 0.171875 3.77795 0.171875 4.10156V14.4141C0.171875 14.7377 0.434199 15 0.757812 15H12.2422C12.5658 15 12.8281 14.7377 12.8281 14.4141V4.10156C12.8281 3.77795 12.5658 3.51562 12.2422 3.51562ZM6.5 1.17188C7.89113 1.17188 9.04939 2.18716 9.27321 3.51562H3.72679C3.95062 2.18716 5.10887 1.17188 6.5 1.17188ZM11.6562 13.8281H1.34375V4.6875H2.51562V6.44531C2.51562 6.76893 2.77795 7.03125 3.10156 7.03125C3.42518 7.03125 3.6875 6.76893 3.6875 6.44531V4.6875H9.3125V6.44531C9.3125 6.76893 9.57482 7.03125 9.89844 7.03125C10.2221 7.03125 10.4844 6.76893 10.4844 6.44531V4.6875H11.6562V13.8281Z" fill="currentColor" />
-                  </svg>
-                  </Link>
-              </li>
               <li className="nav-item border-0 px-0">
                 {/* Button trigger account modal */}
                 <a href="#" className="nav-link d-flex px-3 px-md-4 align-items-center text-white-all icon-xs" data-bs-toggle="modal" data-bs-target="#accountModal">
@@ -593,14 +583,14 @@ const Index = () => {
                   {/* Image */}
                   <div className="card-zoom position-relative">
                     <div className="badge-float sk-fade-top top-0 right-0 mt-4 me-4">
-                        <Link to="/CourseSingle" className="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                        <Link to={`/Espace_User/CourseSingle/${course.id}`} className="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
                         {/* Icon */}
                         <svg width={16} height={16} viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                           <path d="M11.2437 1.20728C10.0203 1.20728 8.87397 1.66486 7.99998 2.48357C7.12598 1.66486 5.97968 1.20728 4.7563 1.20728C2.13368 1.20728 0 3.341 0 5.96366C0 7.2555 0.425164 8.52729 1.26366 9.74361C1.91197 10.6841 2.80887 11.5931 3.92937 12.4454C5.809 13.8753 7.66475 14.6543 7.74285 14.6867L7.99806 14.7928L8.25384 14.6881C8.33199 14.6562 10.1889 13.8882 12.0696 12.4635C13.1907 11.6142 14.0881 10.7054 14.7367 9.7625C15.575 8.54385 16 7.26577 16 5.96371C16 3.341 13.8663 1.20728 11.2437 1.20728ZM8.00141 13.3353C6.74962 12.7555 1.33966 10.0142 1.33966 5.96366C1.33966 4.07969 2.87237 2.54698 4.75634 2.54698C5.827 2.54698 6.81558 3.03502 7.46862 3.88598L8.00002 4.57845L8.53142 3.88598C9.18446 3.03502 10.173 2.54698 11.2437 2.54698C13.1276 2.54698 14.6604 4.07969 14.6604 5.96366C14.6603 10.0433 9.25265 12.7613 8.00141 13.3353Z" fill="currentColor" />
                         </svg>
                       </Link>
                     </div>
-                    <Link to="/CourseSingle" className="card-img sk-thumbnail d-block">
+                    <Link to={`/Espace_User/CourseSingle/${course.id}`} className="card-img sk-thumbnail d-block">
                       <img className="rounded shadow-light-lg" src={`../${course.image}`} alt="..." />
                     </Link>
                     <span className="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
@@ -612,12 +602,12 @@ const Index = () => {
                     {/* Preheading */} <svg width={15} height={15} viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.8102 9.52183C13.313 9.08501 12.7102 8.70758 12.0181 8.40008C11.7223 8.2687 11.3761 8.40191 11.2447 8.69762C11.1134 8.99334 11.2466 9.33952 11.5423 9.47102C12.1258 9.73034 12.6287 10.0436 13.0367 10.4021C13.5396 10.8441 13.8281 11.484 13.8281 12.1582V13.2422C13.8281 13.5653 13.5653 13.8281 13.2422 13.8281H1.75781C1.43475 13.8281 1.17188 13.5653 1.17188 13.2422V12.1582C1.17188 11.484 1.46038 10.8441 1.96335 10.4021C2.55535 9.88186 4.2802 8.67188 7.5 8.67188C9.89079 8.67188 11.8359 6.72672 11.8359 4.33594C11.8359 1.94515 9.89079 0 7.5 0C5.10921 0 3.16406 1.94515 3.16406 4.33594C3.16406 5.7336 3.82896 6.97872 4.85893 7.77214C2.97432 8.18642 1.80199 8.98384 1.18984 9.52183C0.433731 10.1862 0 11.147 0 12.1582V13.2422C0 14.2115 0.788498 15 1.75781 15H13.2422C14.2115 15 15 14.2115 15 13.2422V12.1582C15 11.147 14.5663 10.1862 13.8102 9.52183ZM4.33594 4.33594C4.33594 2.59129 5.75535 1.17188 7.5 1.17188C9.24465 1.17188 10.6641 2.59129 10.6641 4.33594C10.6641 6.08059 9.24465 7.5 7.5 7.5C5.75535 7.5 4.33594 6.08059 4.33594 4.33594Z" fill="currentColor" />
                             </svg>
-                    <Link to="/CourseSingle">
+                    <Link to={`/Espace_User/CourseSingle/${course.id}`}>
                       
                       <span className="mb-1 d-inline-block text-gray-800">{course.category.name}</span></Link>
                     {/* Heading */}
                     <div className="position-relative">
-                    <Link to="/CourseSingle" className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{course.title}</h4></Link>
+                    <Link to={`/Espace_User/CourseSingle/${course.id}`} className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{course.title}</h4></Link>
                       <div className="d-lg-flex align-items-end flex-wrap mb-n1">
                         <div className="star-rating mb-2 mb-lg-0 me-lg-3">
                           <div className="rating" style={{ width: `${ course.rating * 20}%` }} />
@@ -674,7 +664,7 @@ const Index = () => {
                 <p className="font-size-lg mb-0 text-capitalize">Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
               </div>
               <div className="col-md-auto">
-              <Link to="/Allcourses"  className="d-flex align-items-center fw-medium">
+              <Link to="/Espace_User/Allcourses"  className="d-flex align-items-center fw-medium">
                   Browse All
                   <div className="ms-2 d-flex">
                     {/* Icon */}
@@ -688,7 +678,7 @@ const Index = () => {
             <div className="row row-cols-2 row-cols-lg-3 row-cols-xl-4">
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={50}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Design")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -702,13 +692,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Design</h5>
-                    <p className="mb-0 line-clamp-1">Over 960 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'Design' ? count + 1 : count, 0) } Courses</p>
                   </div>
                   </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={100}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Business")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -722,13 +712,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Business</h5>
-                    <p className="mb-0 line-clamp-1">Over 43 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'Business' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={150}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("SoftwareDevelopment")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -742,13 +732,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Software Development</h5>
-                    <p className="mb-0 line-clamp-1">Over 1209 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'SoftwareDevelopment' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={200}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("PersonalDevelopment")}`} className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -762,13 +752,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Personal Development</h5>
-                    <p className="mb-0 line-clamp-1">Over 921 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'PersonalDevelopment' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={250}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Photography")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -782,13 +772,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Photography</h5>
-                    <p className="mb-0 line-clamp-1">Over 693 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'Photography' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={300}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Music")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -802,13 +792,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Audio + Music</h5>
-                    <p className="mb-0 line-clamp-1">Over 53 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'Music' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={350}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Marketing")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -822,13 +812,13 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Marketing</h5>
-                    <p className="mb-0 line-clamp-1">Over 12 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'Marketing' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
               <div className="col mb-md-6 mb-4 px-2 px-md-4" data-aos="fade-up" data-aos-delay={400}>
                 {/* Card */}
-                <Link to="/Allcourses" className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
+                <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Finance")}`}  className="card icon-category border shadow-dark p-md-5 p-3 text-center lift">
                   {/* Image */}
                   <div className="position-relative text-light">
                     <div className="position-absolute bottom-0 right-0 left-0 icon-h-p">
@@ -842,7 +832,7 @@ const Index = () => {
                   {/* Footer */}
                   <div className="card-footer px-0 pb-0 pt-6">
                     <h5 className="mb-0 line-clamp-1">Finance &amp; Accounting</h5>
-                    <p className="mb-0 line-clamp-1">Over 322 Courses</p>
+                    <p className="mb-0 line-clamp-1">Over {courses.reduce((count, course) => course.category.name === 'Finance' ? count + 1 : count, 0) } Courses</p>
                   </div>
                 </Link>
               </div>
@@ -937,7 +927,7 @@ const Index = () => {
                 <p className="font-size-lg mb-0 text-capitalize">Discover your perfect program in our courses.</p>
               </div>
               <div className="col-md-auto">
-              <Link to="/LatestCours" className="d-flex align-items-center fw-medium">
+              <Link to="/Espace_User/LatestCours" className="d-flex align-items-center fw-medium">
                   Browse All
                   <div className="ms-2 d-flex">
                     {/* Icon */}
@@ -949,16 +939,16 @@ const Index = () => {
               </div>
             </div>
             <div className="row row-cols-md-2 row-cols-lg-3neww">
-            {filteredCourses.slice(0, 6).sort((a, b) => new Date(b.date) - new Date(a.date)).map(course => (
+            {courses.slice(0, 6).sort((a, b) => new Date(b.date) - new Date(a.date)).map(course => (
               <div className="col-md mb-5 mb-lg-0">
                 {/* Card */}
                 <div className="card border shadow p-2 lift sk-fade">
                   {/* Image */}
                   <div className="card-zoom position-relative">
-                  <Link to="/CourseSingle" className="card-img d-block sk-thumbnail img-ratio-3">
+                  <Link to={`/Espace_User/CourseSingle/${course.id}`} className="card-img d-block sk-thumbnail img-ratio-3">
                       <img className="rounded shadow-light-lg img-fluid" src={`../${course.image}`}  alt="..." />
                       </Link>
-                      <Link to="/CourseSingle" className="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
+                      <Link to={`/Espace_User/CourseSingle/${course.id}`} className="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
                       <span className="text-white fw-normal font-size-sm">{course.category.name}</span>
                     </Link>
                   </div>

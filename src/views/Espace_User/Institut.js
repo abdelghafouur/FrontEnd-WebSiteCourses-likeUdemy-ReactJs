@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import useAuth from '../../function/useAuth';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Institut = () => {
   const [formations, setformatoin] = useState([]);
@@ -141,7 +142,7 @@ const Institut = () => {
               <p className="font-size-lg mb-0 text-capitalize">Discover your perfect program in our courses.</p>
             </div>
             <div className="col-md-auto">
-              <a href="event-list.html" className="d-flex align-items-center fw-medium">
+            <Link to="/Espace_User/AllFormation" className="d-flex align-items-center fw-medium">
                 Browse All
                 <div className="ms-2 d-flex">
                   {/* Icon */}
@@ -149,7 +150,7 @@ const Institut = () => {
                     <path d="M7.7779 4.6098L3.32777 0.159755C3.22485 0.0567475 3.08745 0 2.94095 0C2.79445 0 2.65705 0.0567475 2.55412 0.159755L2.2264 0.487394C2.01315 0.700889 2.01315 1.04788 2.2264 1.26105L5.96328 4.99793L2.22225 8.73895C2.11933 8.84196 2.0625 8.97928 2.0625 9.1257C2.0625 9.27228 2.11933 9.4096 2.22225 9.51269L2.54998 9.84025C2.65298 9.94325 2.7903 10 2.9368 10C3.0833 10 3.2207 9.94325 3.32363 9.84025L7.7779 5.38614C7.88107 5.2828 7.93774 5.14484 7.93741 4.99817C7.93774 4.85094 7.88107 4.71305 7.7779 4.6098Z" fill="currentColor" />
                   </svg>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="row row-cols-xl-2">
@@ -159,13 +160,13 @@ const Institut = () => {
               <div className="card border shadow p-2 lift">
                 <div className="row gx-0 align-items-center">
                   {/* Image */}
-                  <a href="event-single.html" className="col-auto d-block mw-md-152" style={{maxWidth: '120px'}}>
+                  <Link to={`/Espace_User/FormationSingle/${formation.id}`}   className="col-auto d-block mw-md-152" style={{maxWidth: '120px'}}>
                     <img className="img-fluid rounded shadow-light-lg h-100 h-md-auto o-f-c" src={`../${formation.image}`} alt="..." />
-                  </a>
+                  </Link>
                   {/* Body */}
                   <div className="col">
                     <div className="card-body py-0 px-md-5 px-3">
-                      <a href="event-single.html" className="d-block mb-2"><h5 className="line-clamp-2 h-xl-52">{formation.title}</h5></a>
+                      <Link to={`/Espace_User/FormationSingle/${formation.id}`}   className="d-block mb-2"><h5 className="line-clamp-2 h-xl-52">{formation.title}</h5></Link>
                       <ul className="nav mx-n3 d-block d-md-flex">
                         <li className="nav-item px-3 mb-3 mb-md-0">
                           <div className="d-flex align-items-center">
@@ -194,12 +195,12 @@ const Institut = () => {
                       </ul>
                     </div>
                   </div>
-                  <a href="event-single.html" className="col-auto rounded-lg d-none d-md-flex w-100p h-100p place-center bg-dark me-5">
+                  <Link to={`/Espace_User/FormationSingle/${formation.id}`}   className="col-auto rounded-lg d-none d-md-flex w-100p h-100p place-center bg-dark me-5">
                     <div className="w-100 text-center">
                       <h3 className="text-white mb-0 fw-semi-bold font-size-xxl">{new Date(formation.date).toLocaleDateString('en-US', { day: 'numeric' })}</h3>
                       <span className="h4 mb-0 text-white fw-normal">{new Date(formation.date).toLocaleDateString('en-US', { month: 'long'})}</span>
                     </div>
-                  </a>
+                    </Link>
                 </div>
               </div>
             </div>

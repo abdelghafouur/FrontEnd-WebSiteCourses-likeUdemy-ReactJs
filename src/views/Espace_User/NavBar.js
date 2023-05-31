@@ -1,154 +1,234 @@
-import React  from 'react'
+import React, { useState,useEffect }  from 'react'
 import './styleAll.css'
 import "bootstrap/dist/js/bootstrap.js";
 import { Link } from 'react-router-dom';
 import useAuth from '../../function/useAuth';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 const NavBar = () => { 
   useAuth()
+  const userInformation = JSON.parse(localStorage.getItem('user')); 
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    tele: '',
+    date: '',
+    adresse: '',
+    sexe: '',
+    password: ''
+  });
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token');
+    axios.post('http://127.0.0.1:8000/api/logout', {}, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then(response => {
+        // Handle success, e.g., clear user data, redirect to login page
+        console.log(response.data.message);
+        // Clear the token from local storage or cookie
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/');
+        // Redirect to the login page or perform any necessary actions
+      })
+      .catch(error => {
+        // Handle error
+        console.error(error);
+      });
+  };
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/user/' + userInformation.id); 
+      const user = response.data;
+      setUserData(user);
+      console.log(user)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleInputChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.put('http://127.0.0.1:8000/api/user/' + userInformation.id, userData); // Replace with your API endpoint and userId
+      const updatedUser = response.data;
+      setUserData(updatedUser);
+      window.location.reload()
+      // Optionally show a success message or perform other actions
+    } catch (error) {
+      console.log(error);
+      // Optionally show an error message or perform other actions
+    }
+  };
   return (
           <div>
             {/* MODALS
         ================================================== */}
-            {/* Modal Sidebar account */}
-            <div className="modal modal-sidebar left fade-left fade" id="accountModal">
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  {/* Signin */}
-                  <div className="collapse show" id="collapseSignin" data-bs-parent="#accountModal">
-                    <div className="modal-header">
-                      <h5 className="modal-title">Modifier Profile</h5>
-                      <button type="button" className="close text-primary" data-bs-dismiss="modal" aria-label="Close">
-                        {/* Icon */}
-                        <svg width={16} height={17} viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0.142135 2.00015L1.55635 0.585938L15.6985 14.7281L14.2843 16.1423L0.142135 2.00015Z" fill="currentColor" />
-                          <path d="M14.1421 1.0001L15.5563 2.41431L1.41421 16.5564L0 15.1422L14.1421 1.0001Z" fill="currentColor" />
-                        </svg>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      {/* Form Signin */}
-                      <form className="mb-5">
-                        {/* Email */}
-                        <div className="form-group mb-5">
-                          <label htmlFor="modalSigninEmail">
-                            Username or Email
-                          </label>
-                          <input type="email" className="form-control" id="modalSigninEmail" placeholder="creativelayers" />
-                        </div>
-                        {/* Password */}
-                        <div className="form-group mb-5">
-                          <label htmlFor="modalSigninPassword">
-                            Password
-                          </label>
-                          <input type="password" className="form-control" id="modalSigninPassword" placeholder="**********" />
-                        </div>
-                        <div className="d-flex align-items-center mb-5 font-size-sm">
-                          <div className="form-check">
-                            <input className="form-check-input text-gray-800" type="checkbox" id="autoSizingCheck" />
-                            <label className="form-check-label text-gray-800" htmlFor="autoSizingCheck">
-                              Remember me
-                            </label>
-                          </div>
-                          <div className="ms-auto">
-                            <a className="text-gray-800" data-bs-toggle="collapse" href="#collapseForgotPassword" role="button" aria-expanded="false" aria-controls="collapseForgotPassword">Forgot Password</a>
-                          </div>
-                        </div>
-                        {/* Submit */}
-                        <button className="btn btn-block btn-primary" type="submit">
-                          LOGIN
-                        </button>
-                      </form>
-                      {/* Text */}
-                      <p className="mb-0 font-size-sm text-center">
-                        Don't have an account? <a className="text-underline" data-bs-toggle="collapse" href="#collapseSignup" role="button" aria-expanded="false" aria-controls="collapseSignup">Sign up</a>
-                      </p>
-                    </div>
-                  </div>
-                  {/* Signup */}
-                  <div className="collapse" id="collapseSignup" data-bs-parent="#accountModal">
-                    <div className="modal-header">
-                      <h5 className="modal-title">Sign Up and Start Learning!</h5>
-                      <button type="button" className="close text-primary" data-bs-dismiss="modal" aria-label="Close">
-                        {/* Icon */}
-                        <svg width={16} height={17} viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0.142135 2.00015L1.55635 0.585938L15.6985 14.7281L14.2843 16.1423L0.142135 2.00015Z" fill="currentColor" />
-                          <path d="M14.1421 1.0001L15.5563 2.41431L1.41421 16.5564L0 15.1422L14.1421 1.0001Z" fill="currentColor" />
-                        </svg>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      {/* Form Signup */}
-                      <form className="mb-5">
-                        {/* Username */}
-                        <div className="form-group mb-5">
-                          <label htmlFor="modalSignupUsername">
-                            Username
-                          </label>
-                          <input type="text" className="form-control" id="modalSignupUsername" placeholder="John" />
-                        </div>
-                        {/* Email */}
-                        <div className="form-group mb-5">
-                          <label htmlFor="modalSignupEmail">
-                            Username or Email
-                          </label>
-                          <input type="email" className="form-control" id="modalSignupEmail" placeholder="johndoe@creativelayers.com" />
-                        </div>
-                        {/* Password */}
-                        <div className="form-group mb-5">
-                          <label htmlFor="modalSignupPassword">
-                            Password
-                          </label>
-                          <input type="password" className="form-control" id="modalSignupPassword" placeholder="**********" />
-                        </div>
-                        {/* Submit */}
-                        <button className="btn btn-block btn-primary" type="submit">
-                          SIGN UP
-                        </button>
-                      </form>
-                      {/* Text */}
-                      <p className="mb-0 font-size-sm text-center">
-                        Already have an account? <a className="text-underline" data-bs-toggle="collapse" href="#collapseSignin" role="button" aria-expanded="true" aria-controls="collapseSignin">Log In</a>
-                      </p>
-                    </div>
-                  </div>
-                  {/* Forgot Password */}
-                  <div className="collapse" id="collapseForgotPassword" data-bs-parent="#accountModal">
-                    <div className="modal-header">
-                      <h5 className="modal-title">Recover password!</h5>
-                      <button type="button" className="close text-primary" data-bs-dismiss="modal" aria-label="Close">
-                        {/* Icon */}
-                        <svg width={16} height={17} viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0.142135 2.00015L1.55635 0.585938L15.6985 14.7281L14.2843 16.1423L0.142135 2.00015Z" fill="currentColor" />
-                          <path d="M14.1421 1.0001L15.5563 2.41431L1.41421 16.5564L0 15.1422L14.1421 1.0001Z" fill="currentColor" />
-                        </svg>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      {/* Form Recover Password */}
-                      <form className="mb-5">
-                        {/* Email */}
-                        <div className="form-group">
-                          <label htmlFor="modalForgotpasswordEmail">
-                            Email
-                          </label>
-                          <input type="email" className="form-control" id="modalForgotpasswordEmail" placeholder="johndoe@creativelayers.com" />
-                        </div>
-                        {/* Submit */}
-                        <button className="btn btn-block btn-primary" type="submit">
-                          RECOVER PASSWORD
-                        </button>
-                      </form>
-                      {/* Text */}
-                      <p className="mb-0 font-size-sm text-center">
-                        Remember your password? <a className="text-underline" data-bs-toggle="collapse" href="#collapseSignin" role="button" aria-expanded="false" aria-controls="collapseSignin">Log In</a>
-                      </p>
-                    </div>
-                  </div>
+            {/* MODALS
+    ================================================== */}
+        <div className="modal modal-sidebar left" style={{"paddingRight": "0px"}} id="accountModal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              {/* Signin */}
+              <div className="collapse show" id="collapseSignin" data-bs-parent="#accountModal">
+                <div className="modal-header">
+                  <h5 className="modal-title">Modifier Now Your Account!</h5>
+                  <button type="button" className="close text-primary" data-bs-dismiss="modal" aria-label="Close">
+                    {/* Icon */}
+                    <svg width={16} height={17} viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.142135 2.00015L1.55635 0.585938L15.6985 14.7281L14.2843 16.1423L0.142135 2.00015Z" fill="currentColor" />
+                      <path d="M14.1421 1.0001L15.5563 2.41431L1.41421 16.5564L0 15.1422L14.1421 1.0001Z" fill="currentColor" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="modal-body">
+                  {/* Form Signin */}
+                  <form className="mb-5" onSubmit={handleSubmit}>
+      <div style={{ width: "400px", float: "left" }}>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail">
+            Firstname
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="modalSigninEmail"
+            name="firstname"
+            value={userData.firstname}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail2">
+            Lastname
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="modalSigninEmail2"
+            name="lastname"
+            value={userData.lastname}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail3">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="modalSigninEmail3"
+            name="email"
+            value={userData.email}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail4">
+            Telephone
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="modalSigninEmail4"
+            name="tele"
+            value={userData.tele}
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+      <div style={{ width: "400px", float: "right" }}>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail5">
+            Date
+          </label>
+          <input
+            type="date"
+            className="form-control"
+            id="modalSigninEmail5"
+            name="date"
+            value={userData.date}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail6">
+            Adresse
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="modalSigninEmail6"
+            name="adresse"
+            value={userData.adresse}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninEmail7">
+            Sexe
+          </label>
+          <div style={{ padding: "1rem 1.25rem", lineHeight: "1.80" }}>
+            Masculine: <input
+              type="radio"
+              style={{ marginRight: "40px" }}
+              name="sexe"
+              value="M"
+              checked={userData.sexe === "M"}
+              onChange={handleInputChange}
+            />
+            Feminine: <input
+              type="radio"
+              name="sexe"
+              value="F"
+              checked={userData.sexe === "F"}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        {/* Password */}
+        <div className="form-group mb-5">
+          <label htmlFor="modalSigninPassword">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="modalSigninPassword"
+            name="password"
+            value={userData.password}
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+      {/* Submit */}
+      <button className="btn btn-block btn-primary" type="submit">
+        Modifier
+      </button>
+                  </form>
                 </div>
               </div>
             </div>
+          </div>
+        </div>  
             {/* Modal Sidebar cart */}
             {/* NAVBAR
         ================================================== */}
@@ -172,7 +252,7 @@ const NavBar = () => {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-md bg-primary rounded py-4 mt-4" aria-labelledby="navbarVerticalMenu">
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Design")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={21} viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,10 +261,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Design
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Business")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -193,10 +273,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Business
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("SoftwareDevelopment")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -211,10 +291,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Software Development
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("PersonalDevelopment")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={14} height={18} viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,10 +306,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Personal Development
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Photography")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -237,10 +317,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Photography
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Music")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -248,10 +328,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Audio + Music
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Marketing")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -262,10 +342,10 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Marketing
-                        </a>
+                        </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                        <a className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Finance")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,7 +354,7 @@ const NavBar = () => {
                             </svg>
                           </div>
                           Finance &amp; Accounting
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
@@ -284,7 +364,7 @@ const NavBar = () => {
                   {/* Navigation */}
                   <ul className="navbar-nav ms-auto">
                     <li className="nav-item dropdown dropdown-full-width">
-                    <Link to="/" className="nav-link px-xl-4">
+                    <Link to="/Espace_User/" className="nav-link px-xl-4">
                     Home
                   </Link>
                     </li>
@@ -294,34 +374,34 @@ const NavBar = () => {
                   </a>
                   <ul className="dropdown-menu border-xl shadow-none" aria-labelledby="navbarShop">
                     <li className="dropdown-item">
-                    <Link to="/Allcourses" className="dropdown-link">
+                    <Link to="/Espace_User/Allcourses" className="dropdown-link">
                         All Categories
                     </Link>
                     </li>
                     <li className="dropdown-item">
-                      <Link to="/LatestCours" className="dropdown-link">
+                      <Link to="/Espace_User/LatestCours" className="dropdown-link">
                       Latest Cours
                     </Link>
                     </li>
                   </ul>
                 </li>
                     <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/MyCoures" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/MyCoures" className="nav-link px-xl-4">
                   My Coures
                     </Link>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/Institut" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/Institut" className="nav-link px-xl-4">
                   Institut
                     </Link>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/ContactUs" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/ContactUs" className="nav-link px-xl-4">
                   Contact Us
                     </Link>
                 </li>
                 <li className="nav-item dropdown dropdown-full-width">
-                  <Link to="/FAQ" className="nav-link px-xl-4">
+                  <Link to="/Espace_User/FAQ" className="nav-link px-xl-4">
                   FAQ
                     </Link>
                 </li>
@@ -338,19 +418,9 @@ const NavBar = () => {
                       </svg>
                     </a>
                   </li>
-                  <li className="nav-item border-0 px-0">
-                    {/* Button trigger cart modal */}
-                    <Link to="/shopCourses" className="nav-link d-flex px-3 px-md-4 position-relative text-secondary icon-xs">
-                      <span className="badge badge-primary rounded-circle fw-bold badge-float mt-n1 ms-n2 px-0 w-16" style={{fontSize: '8px'}}>2</span>
-                      {/* Icon */}
-                      <svg width={13} height={15} viewBox="0 0 13 15" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.2422 3.51562H10.4567C10.2239 1.53873 8.53839 0 6.5 0C4.46161 0 2.7761 1.53873 2.54334 3.51562H0.757812C0.434199 3.51562 0.171875 3.77795 0.171875 4.10156V14.4141C0.171875 14.7377 0.434199 15 0.757812 15H12.2422C12.5658 15 12.8281 14.7377 12.8281 14.4141V4.10156C12.8281 3.77795 12.5658 3.51562 12.2422 3.51562ZM6.5 1.17188C7.89113 1.17188 9.04939 2.18716 9.27321 3.51562H3.72679C3.95062 2.18716 5.10887 1.17188 6.5 1.17188ZM11.6562 13.8281H1.34375V4.6875H2.51562V6.44531C2.51562 6.76893 2.77795 7.03125 3.10156 7.03125C3.42518 7.03125 3.6875 6.76893 3.6875 6.44531V4.6875H9.3125V6.44531C9.3125 6.76893 9.57482 7.03125 9.89844 7.03125C10.2221 7.03125 10.4844 6.76893 10.4844 6.44531V4.6875H11.6562V13.8281Z" fill="currentColor" />
-                      </svg>
-                    </Link>
-                  </li>
                 </ul>
                 {/* Toggler */}
-                <button className="navbar-toggler ms-4 ms-md-5 shadow-none bg-teal text-white icon-xs p-0 outline-0 h-40p w-40p d-flex d-xl-none place-flex-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button  onClick={handleLogout}  className="navbar-toggler ms-4 ms-md-5 shadow-none bg-teal text-white icon-xs p-0 outline-0 h-40p w-40p d-flex d-xl-none place-flex-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
              <i className="fa-solid fa-right-from-bracket" style={{"color": "#ffffff"}} />
                 </button>
               </div>
