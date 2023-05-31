@@ -1,0 +1,29 @@
+          
+            .w-100 {
+                width: 100% !important
+            }
+            
+            .p-5 {
+                padding: 1.5rem !important
+            }
+            .py-6 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important
+            }
+            .min-height-80 {
+                min-height: 5rem
+            }
+            .btn-x-wide {
+                min-width: 11.25rem
+            }
+            
+            @media (min-width:48rem) {
+                .btn-x-wide {
+                    min-width: 15.375rem
+                }
+            }
+            
+            .CntrF{
+                text-align: -webkit-center;
+            }
+             

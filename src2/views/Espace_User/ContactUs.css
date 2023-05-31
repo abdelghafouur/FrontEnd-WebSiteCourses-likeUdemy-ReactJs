@@ -1,0 +1,32 @@
+            
+.flex-shrink-1 {
+    flex-shrink: 1 !important
+}
+.grayscal-hover {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1)
+}
+.grayscal-hover:focus, .grayscal-hover:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0)
+}
+.placeholder-1::-webkit-input-placeholder {
+    font-size: .875rem
+}
+
+.placeholder-1::-moz-placeholder {
+    font-size: .875rem
+}
+
+.placeholder-1:-ms-input-placeholder {
+    font-size: .875rem
+}
+
+.placeholder-1::-ms-input-placeholder {
+    font-size: .875rem
+}
+
+.placeholder-1::placeholder {
+    font-size: .875rem
+}
+      

@@ -1,0 +1,338 @@
+.myMod .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+#portal .container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  padding-right: 80px;
+  padding-left: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .modal {
+  z-index: 1;
+  margin-top: 40px;
+  width: 939px;
+  height: 525px;
+  background: white;
+  display: flex;
+  border-radius: 5px;
+  position: relative;
+  animation: animate 0.3s;
+}
+.modal .button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  padding: 8px 11px;
+  background: crimson;
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.container .modal .modeldiv{
+  height: 135px;
+  background-image: url("../pic/login5.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 25%;
+  
+}
+.container .modal .modeldiv .div1{
+  background: #eaeff4;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: none;
+  color: #5d676e;
+  margin-top: 70px;
+}
+
+.container .modal .div2{
+  height: 390px;
+}
+.container .modal .div3{
+  width: 476px;
+}
+.container .modal h6 {
+  font-size: 1rem;
+  line-height: 1;
+}
+.container .modal .modeldiv .divAfficher{
+  background: #fff;
+  color: #83c11f;
+;}
+.container .modal .btn1,.container .modal .btn2{
+  background-color: black;
+    color: aliceblue;
+  
+  padding: 15px;
+  border-radius: 12px;
+  }
+  .container .modal .btn1:hover,.container .modal .btn2:hover
+  {
+    background-color: #83c11f;
+    color: aliceblue;
+  }
+.container .modal .btn1
+  {
+    margin-top: 14px;
+    margin-left: 150px;
+  }
+  .container .modal .btn2{
+    margin-top: 14px;
+    margin-left: 135px;
+  }
+  .container .modal h2{
+    margin-top: 15px;
+    margin-left: 180px;
+    margin-bottom: 20px;
+  }
+  .container .modal .par
+  {
+    margin-top: 40px;
+    text-align: center;
+    margin-right: 10px;
+  }
+  .container .modal .par2
+  {
+    text-align: center;
+    margin-right: 10px;
+  }
+.container .modal .maform
+  {
+    padding-left: 110px;
+    margin-top: 70px;
+    width: 438px;
+  }
+.container .modal .maform .form-control {
+    display: block;
+    width: 55%;
+  }
+.container .modal .div2 .p
+  {
+
+    margin-left: 120px;
+    font-size: 16px;
+    color: #83c11f;
+    font-weight:440;
+  }
+.container .modal .div2 .p span{
+  color: #757575;
+  font-weight:400;
+  text-decoration: none;
+}
+
+.container .modal .div2 .p span:hover
+  {
+    color: blue;
+    font-weight:440;
+  }
+/*hhhhhhhhhhhhhhhhhhhhhhhh*/
+
+/* basic stylings ------------------------------------------ */
+
+
+/* form starting stylings ------------------------------- */
+.group 			  { 
+  position:relative; 
+  margin-bottom:35px; 
+  margin-left: -60px;
+}
+.group p
+  {
+    margin-top: 16px;
+    margin-left: 110px;
+    font-size: 16px;
+    color: #83c11f;
+    font-weight:440;
+  }
+.group p span{
+  color: #757575;
+  font-weight:400;
+  text-decoration: none;
+}
+.group p span:hover
+  {
+    color: blue;
+    font-weight:440;
+  }
+.group input 				{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:350px;
+  border:none;
+  border-bottom:1px solid #757575;
+  background-color: #eaeff4;
+  color:#5d676e;
+  padding-left: 20px;
+  border-radius: 10px 10px 0 0
+}
+.group input:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+.label 				 {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+  padding-left: 20px;
+}
+
+/* active state */
+.group input:focus ~ .label, .group input:valid ~ .label 		{
+  top:-25px;
+  font-size:16px;
+  color:#83c11f;
+  padding-left: 0px;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#83c11f; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+  
+}
+
+/* active state */
+.group input:focus ~ .bar:before, .group input:focus ~ .bar:after {
+  width:350px;
+}
+
+/* HIGHLIGHTER ================================== */
+
+
+/* active state */
+.group input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+.btnLogin {
+    background: #83c11f;
+    border-radius: 40px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.15em;
+    margin: 0 -30px 10px 17px;
+    padding: 13px 10px;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    width: 60%;
+    margin-top: -30px;
+
+  }
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:#83c11f; }
+  to 	{ width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:#83c11f; }
+  to 	{ width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:#83c11f; }
+  to 	{ width:0; background:transparent; }
+}
+
+.signup input,.signup select{
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  padding-left: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  width: 145px;
+}
+.signup .frm{
+  width: 360px;
+}
+.container .modal .myyform
+  {
+    padding-top: 80px;
+    padding-left: 80px;
+    padding-right: 40px;
+    width: 925px;;
+  }
+  .container .modal .div4{
+    height: 310px;
+  }
+  .signup button{
+    background: #83c11f;
+    border-radius: 40px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.15em;
+    margin: 0 -30px 10px;
+    padding: 9px 7px;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    width: 40%;
+    margin-left: 7px;
+  }
+
+.signup button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+.signup button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+.signup button:hover span {
+    padding-right: 25px;
+  }
+  
+.signup button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  
