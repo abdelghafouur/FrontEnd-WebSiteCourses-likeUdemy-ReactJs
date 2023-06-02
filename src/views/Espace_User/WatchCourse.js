@@ -4,9 +4,12 @@ import './styleAll.css'
 import Footer from './Footer'
 import NavBar from './NavBar'
 import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const WatchCourse = () => { 
+  const { idCourse } = useParams();
   const count = 0
   const [course, setCourses] = useState([]);
   const [objectives, setobjectives] = useState([]);
@@ -29,13 +32,13 @@ const WatchCourse = () => {
   }, []);
   useEffect(() => {
     fetchUserCourses()
-    setcourse_id1(1)
+    setcourse_id1(idCourse)
     setcompte_id1(userInformation.id)
 }, []);
 const handleDownloadCertificate = async () => {
   try {
       const userId = userInformation.id; // Assuming you have the user's ID
-      const response = await axios.get(`http://127.0.0.1:8000/api/certificategetDown/1/${userId}`, {
+      const response = await axios.get(`http://127.0.0.1:8000/api/certificategetDown/${idCourse}/${userId}`, {
           responseType: 'blob', // Set the response type to 'blob' to receive binary data
       });
 
@@ -59,7 +62,7 @@ const handleDownloadCertificate = async () => {
 
 const fetchUserCourses = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/course/1`, {
+    const response = await axios.get(`http://127.0.0.1:8000/api/course/${idCourse}`, {
       headers: {
       },
     });
@@ -70,7 +73,7 @@ const fetchUserCourses = async () => {
       setCourses(data);
       try {
         const userId = userInformation.id; // Assuming you have the user's ID
-        const response8 = await axios.get(`http://127.0.0.1:8000/api/FindquizCourse/1/${userId}`, {
+        const response8 = await axios.get(`http://127.0.0.1:8000/api/FindquizCourse/${idCourse}/${userId}`, {
           headers: {
           },
         });
@@ -129,20 +132,20 @@ const fetchUserCourses = async () => {
                             <path d="M12.8704 6.15374L3.42038 0.328572C2.73669 -0.0923355 1.9101 -0.109836 1.20919 0.281759C0.508282 0.673291 0.0898438 1.38645 0.0898438 2.18929V13.7866C0.0898438 15.0005 1.06797 15.9934 2.27016 16C2.27344 16 2.27672 16 2.27994 16C2.65563 16 3.04713 15.8822 3.41279 15.6591C3.70694 15.4796 3.79991 15.0957 3.62044 14.8016C3.44098 14.5074 3.05697 14.4144 2.76291 14.5939C2.59188 14.6982 2.42485 14.7522 2.27688 14.7522C1.82328 14.7497 1.33763 14.3611 1.33763 13.7866V2.18933C1.33763 1.84492 1.51713 1.53907 1.81775 1.3711C2.11841 1.20314 2.47294 1.21064 2.76585 1.39098L12.2159 7.21615C12.4999 7.39102 12.6625 7.68262 12.6618 8.01618C12.6611 8.34971 12.4974 8.64065 12.2118 8.81493L5.37935 12.9983C5.08548 13.1783 4.9931 13.5623 5.17304 13.8562C5.35295 14.1501 5.73704 14.2424 6.03092 14.0625L12.8625 9.87962C13.5166 9.48059 13.9081 8.78496 13.9096 8.01868C13.9112 7.25249 13.5226 6.55524 12.8704 6.15374Z" fill="currentColor" />
                           </svg>
                       </div>
-                      <img className="rounded shadow-light-lg" src={`../${course.image}`} alt="..." />
+                      <img className="rounded shadow-light-lg" src={`/../${course.image}`} alt="..." />
         </a>
       ))}
                   <h3 className="text-white">Course Description</h3>
                   <p className="mb-6 line-height-md">{course.description}</p>
                   <div className="d-md-flex align-items-center justify-content-between" style={{"marginBottom":"100px","marginTop":"100px"}}>
-                    <a href="#" className="btn btn-blue d-flex align-items-center mb-5 mb-md-0 btn-block mw-md-280p justify-content-center">
+                  <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="btn btn-blue d-flex align-items-center mb-5 mb-md-0 btn-block mw-md-280p justify-content-center">
                       <i className="fas fa-arrow-left font-size-xs" />
                       <span className="ms-3">Introduction</span>
-                    </a>
-                    <a href="#" className="btn btn-blue d-flex align-items-center btn-block mw-md-280p justify-content-center mt-0">
-                      <span className="me-3">Structure of the course</span>
+                    </Link>
+                    <Link to={`/Espace_User/CourseSingle/StartQuiz/${course.id}`}  className="btn btn-blue d-flex align-items-center btn-block mw-md-280p justify-content-center mt-0">
+                      <span className="me-3">Lansez Quiz</span>
                       <i className="fas fa-arrow-right font-size-xs" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="col-lg-4">
@@ -198,10 +201,20 @@ const fetchUserCourses = async () => {
                         </div>
                       </div>
                     </div>
-                    {Resultaaat.etat = "true"?(<div className="d-md-flex">
-                        <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" onClick={handleDownloadCertificate} name="button">Download Certificate</button>
-                      </div>):(<></>)
-                    }
+                    {Object.keys(Resultaaat).length === 0 ? (
+                      <></>
+                    ) : (
+                      (Resultaaat.etat === "true") ? (
+                        <div className="d-md-flex">
+                          <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" onClick={handleDownloadCertificate} name="button">
+                            Download Certificate
+                          </button>
+                        </div>
+                      ) : (
+                        <></>
+                      )
+                    )}
+
                   </div>
                 </div>
               </div>

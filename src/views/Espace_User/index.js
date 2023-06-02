@@ -17,10 +17,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Index = () => { 
+  useAuth();
+    const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const userInformation = JSON.parse(localStorage.getItem('user')); 
+  const [searchTerm, setSearchTerm] = useState("");
   const [userData, setUserData] = useState({
     firstname: '',
     lastname: '',
@@ -31,8 +34,31 @@ const Index = () => {
     sexe: '',
     password: ''
   });
-    useAuth();
-    const navigate = useNavigate();
+
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSelectCourse = (course) => {
+    const filteredCourses = courses.find(elemntCourse => elemntCourse.title === course);
+    setSelectedCourseId(filteredCourses.id);
+  };
+
+  const MyfilteredCourses = courses.filter((course) =>
+    course.title.toLowerCase().includes(searchTerm?.toLowerCase() ?? "")
+  );
+
+  const handleButtonClick = () => {
+    if (selectedCourseId) {
+      // Perform any necessary processing with the selected course ID
+      // For example, you can pass the selected course ID to another component using state or URL parameters
+      // Then navigate to the desired component
+      navigate(`/Espace_User/CourseSingle/${selectedCourseId}`);
+    }
+  };
+
     useEffect(() => {
         AOS.init({
         });
@@ -515,8 +541,8 @@ const Index = () => {
                   More Than 48.259 <span className="display-1 text-orange fw-bold">Online Courses</span>
                 </h1>
                 {/* Form */}
-                <form className="mb-6 me-xl-9" data-aos="fade-up" data-aos-duration={200}>
                   <div className="input-group">
+                  <button onClick={handleButtonClick}>
                     <div className="input-group-prepend">
                       <span className="input-group-text border-right-0 text-primary icon-xs rounded-left-xl">
                         {/* Icon */}
@@ -526,9 +552,23 @@ const Index = () => {
                         </svg>
                       </span>
                     </div>
-                    <input type="search" className="form-control ps-2 border-left-0 rounded-right-xl border-0" placeholder="Search for a job" />
+                    </button>
+                    <input
+                        type="search"
+                        className="form-control ps-2 border-left-0 rounded-right-xl border-0"
+                        placeholder="Search for a course"
+                        list="courseOptions"
+                        value={searchTerm}
+                        onChange={handleChange}
+                        onInput={(e) => handleSelectCourse(e.target.value)}
+                      />
+                      <datalist id="courseOptions">
+                        {MyfilteredCourses.map((course) => (
+                          <option key={course.id} value={course.title}/>
+                        ))}
+                      </datalist>
+
                   </div>
-                </form>
                 {/* Text */}
                 <p className="text-white text-capitalize" data-aos="fade-up" data-aos-duration={200}>
                   Trending Search: Development, Business, Design, Merketing

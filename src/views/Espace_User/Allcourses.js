@@ -339,7 +339,7 @@ const Allcourses = () => {
                                     <Link to={`/Espace_User/CourseSingle/${course.id}`} ><span className="mb-1 d-inline-block text-gray-800">{course.category.name}</span></Link>
                                     {/* Heading */}
                                     <div className="position-relative">
-                                      <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">Fashion Photography From Professional</h4></Link>
+                                      <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{course.title}</h4></Link>
                                       <div className="d-lg-flex align-items-end flex-wrap mb-n1">
                                         <div className="star-rating mb-2 mb-lg-0 me-lg-3">
                                           <div className="rating" style={{ width: `${ course.rating * 20}%` }} />

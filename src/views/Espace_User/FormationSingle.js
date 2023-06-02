@@ -7,7 +7,9 @@ import Footer from './Footer'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 
+
 const FormationSingle = () => {
+    const isObjectEmpty = {};
   const { idFormation } = useParams();
     const [course, setCourses] = useState([]);
     const [objectives, setobjectives] = useState([]);
@@ -16,11 +18,13 @@ const FormationSingle = () => {
     const [rating ,setrating ]= useState('')
     const [course_id1 ,setcourse_id1 ]= useState('')
     const [compte_id1 ,setcompte_id1 ]= useState('')
+    const [myEtat ,setmyEtat]= useState('')
     const userInformation = JSON.parse(localStorage.getItem('user')); 
     useEffect(() => {
         fetchUserCourses()
         setcourse_id1(idFormation)
         setcompte_id1(userInformation.id)
+        fetchFormation()
     }, []);
   
     const fetchUserCourses = async () => {
@@ -107,7 +111,132 @@ const FormationSingle = () => {
             } catch (error) {
                 console.log(error)
             }
-        }
+        };
+
+    const handleGenerateCertificate = async () => {
+          try {
+            const response = await axios.post('http://127.0.0.1:8000/api/generate-atestation', {
+              firstname: userInformation.firstname,
+              lastname: userInformation.lastname,
+            }, {
+              responseType: 'blob', // Set the response type to 'blob' to receive binary data
+            });
+      
+            // Create a download link
+            const downloadLink = document.createElement('a');
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            downloadLink.href = url;
+            downloadLink.setAttribute('download', 'certificate.pdf');
+            document.body.appendChild(downloadLink);
+      
+            // Trigger the download
+            downloadLink.click();
+      
+            // Clean up
+            document.body.removeChild(downloadLink);
+            window.URL.revokeObjectURL(url);
+            
+            // Convert the PDF to a base64 string
+            const reader = new FileReader();
+            reader.readAsDataURL(response.data);
+            reader.onloadend = async () => {
+            const base64data = reader.result.split(",")[1];
+    
+              // Update the certificate information in the database
+              try {
+                const userId = userInformation.id; // Assuming you have the user's ID
+                const certificateData = {
+                  certificate: base64data,
+                };
+                await axios.put(`http://127.0.0.1:8000/api/updateAtestationInscr/1/${userId}`, certificateData);
+                console.log('Update success.'); // Handle success, e.g., show a success message or redirect to another page
+                window.location.reload();
+              } catch (error) {
+                console.log('Update failed. Please try again.'); // Handle error, e.g., show an error message
+              }
+            };
+    
+          } catch (error) {
+            console.error('Error generating certificate:', error);
+          }
+        };
+    const fetchUserFormationInsc= async () => {
+          const formData = new FormData();
+              formData.append('formation_id', 1);
+              formData.append('compte_id', userInformation.id);
+                      try {
+                          axios.post(`http://127.0.0.1:8000/api/FormationInscp`,formData,
+                                {
+                                  headers: {
+                                      'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+                                    }
+                               })
+                              .then(response => {
+                                  const { message } = response.data;
+                                  handleGenerateCertificate()
+                                  console.log(message);
+                              })
+                              .catch(error => {
+                                  if (error.response) {
+                                  console.log(error.response.data);
+                                  console.log(error.response.status);
+                                  } else if (error.request) {
+                                  console.log(error.request);
+                                  } else {
+                                  console.log('Error', error.message);
+                                  }
+                                  console.log(error.config);
+                              });
+                      } catch (error) {
+                          console.log(error)
+                      }
+  
+        };
+    const fetchFormation = async () => {
+          try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/FormationInscpget/1/${userInformation.id}`, {
+              headers: {
+              },
+            });
+      
+            if (response.status === 200) {
+    
+              const data = response.data;
+              setmyEtat(data);
+                isObjectEmpty = Object.keys(data).length === 0;
+
+            } else {
+              throw new Error('Failed to fetch user courses');
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    const handleDownloadCertificate = async () => {
+          try {
+              const userId = userInformation.id; // Assuming you have the user's ID
+              const response = await axios.get(`http://127.0.0.1:8000/api/AtestationDown/1/${userId}`, {
+                  responseType: 'blob', // Set the response type to 'blob' to receive binary data
+              });
+        
+              // Create a download link
+              const downloadLink = document.createElement('a');
+              const url = window.URL.createObjectURL(new Blob([response.data]));
+              downloadLink.href = url;
+              downloadLink.setAttribute('download', 'certificate.pdf');
+              document.body.appendChild(downloadLink);
+        
+              // Trigger the download
+              downloadLink.click();
+        
+              // Clean up
+              document.body.removeChild(downloadLink);
+              window.URL.revokeObjectURL(url);
+          } catch (error) {
+              console.error('Error downloading certificate:', error);
+          }
+        };
+
   return (
                  
             <div>
@@ -283,7 +412,13 @@ const FormationSingle = () => {
                             <span>{course.duration}</span>
                             </li>
                         </ul>
-                        <button className="btn btn-primary btn-block mb-3" type="button" name="button">BOOK NOW</button>
+                        {(Object.keys(myEtat).length === 0 )? (
+                            <button className="btn btn-primary btn-block mb-3" onClick={fetchUserFormationInsc}  type="button" name="button">BOOK NOW</button>
+                                ) : (
+                                    <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" onClick={handleDownloadCertificate} name="button">Download Certificate</button>
+                                )}
+                        
+                        
                         </div>
                     </div>
                     </div>

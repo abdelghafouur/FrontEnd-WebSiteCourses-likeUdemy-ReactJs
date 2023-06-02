@@ -17,6 +17,7 @@ import WatchCourse from './views/Espace_User/WatchCourse'
 import AllFormation from './views/Espace_User/AllFormation';
 import FormationSingle from './views/Espace_User/FormationSingle';
 import Quiz from './views/Espace_User/Test';
+import StartQuiz from './views/Espace_User/StartQuiz';
 
 
 
@@ -38,10 +39,11 @@ export default function App(){
               <Route element={<ContactUs/>}  path="/Espace_User/ContactUs" />
               <Route element={<FAQ/>}  path="/Espace_User/FAQ" />
               <Route element={<CourseSingle/>}  path="/Espace_User/CourseSingle/:idCourse" />
-              <Route element={<WatchCourse/>}  path="/Espace_User/WatchCourse" />
+              <Route element={<WatchCourse/>}  path="/Espace_User/WatchCourse/:idCourse" />
               <Route element={<AllFormation/>}  path="/Espace_User/AllFormation" />
               <Route element={<FormationSingle/>}  path="/Espace_User/FormationSingle/:idFormation" />
-              <Route element={<Quiz/>}  path="/Espace_User/CourseSingle/Quiz" />
+              <Route element={<Quiz/>}  path="/Espace_User/CourseSingle/Quiz/:idCourse" />
+              <Route element={<StartQuiz/>}  path="/Espace_User/CourseSingle/StartQuiz/:idCourse" />
 
 
       </Routes>

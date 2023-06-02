@@ -5,7 +5,7 @@ import Footer from './Footer'
 import NavBar from './NavBar'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const CourseSingle = () => {
   const { idCourse } = useParams();
@@ -18,7 +18,9 @@ const CourseSingle = () => {
   const [rating ,setrating ]= useState('')
   const [course_id1 ,setcourse_id1 ]= useState('')
   const [compte_id1 ,setcompte_id1 ]= useState('')
+  const [myEtat ,setmyEtat ]= useState('')
   const userInformation = JSON.parse(localStorage.getItem('user')); 
+
   React.useEffect(() => {
     $('[data-fancybox]').fancybox();
   }, []);
@@ -27,6 +29,7 @@ const CourseSingle = () => {
       fetchUserCourses()
       setcourse_id1(idCourse)
       setcompte_id1(userInformation.id)
+      fetchCoursesAcheterbyUser()
   }, []);
 
   const fetchUserCourses = async () => {
@@ -164,7 +167,57 @@ const CourseSingle = () => {
       console.log(error.config);
     }
   };
-  
+  const fetchUserCoursesAcheter= async () => {
+    const formData = new FormData();
+        formData.append('course_id', 1);
+        formData.append('compte_id', userInformation.id);
+                try {
+                    axios.post(`http://127.0.0.1:8000/api/CoursesAcheter`,formData,
+                          {
+                            headers: {
+                                'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+                              }
+                         })
+                        .then(response => {
+                            const { message } = response.data;
+                            console.log(message);
+                            window.location.reload();
+                        })
+                        .catch(error => {
+                            if (error.response) {
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            } else if (error.request) {
+                            console.log(error.request);
+                            } else {
+                            console.log('Error', error.message);
+                            }
+                            console.log(error.config);
+                        });
+                } catch (error) {
+                    console.log(error)
+                }
+
+  };
+  const fetchCoursesAcheterbyUser = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/CoursesAcheterbyUser/1/${userInformation.id}`, {
+        headers: {
+        },
+      });
+
+      if (response.status === 200) {
+
+        const data = response.data;
+        setmyEtat(data);
+
+      } else {
+        throw new Error('Failed to fetch user courses');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
             <div>
                 <NavBar/>
@@ -281,9 +334,14 @@ const CourseSingle = () => {
                         <ins className="h2 mb-0 text-white">${course.price}</ins>
                       </div>
                       <div className="d-md-flex">
-                        <button className="btn btn-blue btn-wide mb-4 mb-md-0 me-md-3 flex-grow-1" type="button" name="button">BUY NOW</button>
-                        <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" type="button" name="button">ENROLL</button>
-                      </div>
+                    {Object.keys(myEtat).length === 0 ? (
+                        <button className="btn btn-blue btn-wide mb-4 mb-md-0 me-md-3 flex-grow-1" onClick={fetchUserCoursesAcheter} type="button" name="button">BUY NOW</button>
+                    ) : (
+                        <Link to={`/Espace_User/WatchCourse/${course.id}`}>
+                        <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" type="button" name="button">Watch Now</button>
+                        </Link>
+                    )}
+                    </div>     
                     </div>
                   </div>
                 </div>
@@ -476,13 +534,13 @@ const CourseSingle = () => {
                         <ul className="list-unstyled mb-0">
                           {CoursesForUser.slice(0, 5).sort((a, b) => new Date(b.date) - new Date(a.date)).map( (course) => (
                           <li key={course.id} className="media mb-6 d-flex">
-                            <a href="course-single-v5.html" className="w-100p d-block me-5">
+                            <Link to={`/Espace_User/CourseSingle/${course.id}`} className="w-100p d-block me-5">
                               <img src={`../${course.image}`} alt="..." className="avatar-img rounded-lg h-90p w-100p" />
-                            </a>
+                            </Link>
                             <div className="media-body flex-grow-1">
-                              <a href="course-single-v5.html" className="d-block">
+                              <Link to={`/Espace_User/CourseSingle/${course.id}`} className="d-block">
                                 <h6 className="line-clamp-2 mb-3">{course.title}</h6>
-                              </a>
+                              </Link>
                               <span className="me-2">{course.category.name}</span>
                               <ins className="h6 mb-0 ">${course.price}</ins>
                             </div>

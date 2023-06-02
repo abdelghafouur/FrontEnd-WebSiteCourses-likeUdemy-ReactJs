@@ -1,8 +1,11 @@
 import React, { useEffect ,useState} from "react";
 import axios from "axios";
 import './Test.css';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Quiz = () => {
+    const { idCourse } = useParams();
     const currentDate = new Date();
     const [activeQuestion, setActiveQuestion] = useState(0)
     const [selectedAnswer, setSelectedAnswer] = useState('')
@@ -63,7 +66,7 @@ const Quiz = () => {
             const certificateData = {
               certificate: base64data,
             };
-            await axios.put(`http://127.0.0.1:8000/api/updateCertificate/1/${userId}`, certificateData);
+            await axios.put(`http://127.0.0.1:8000/api/updateCertificate/${idCourse}/${userId}`, certificateData);
             console.log('Update success.'); // Handle success, e.g., show a success message or redirect to another page
           } catch (error) {
             console.log('Update failed. Please try again.'); // Handle error, e.g., show an error message
@@ -102,7 +105,7 @@ const Quiz = () => {
       }, [quiz1,activeQuestion]);
       const fetchUserCourses = async () => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/api/course/1`, {
+          const response = await axios.get(`http://127.0.0.1:8000/api/course/${idCourse}`, {
             headers: {
             },
           });
@@ -121,7 +124,7 @@ const Quiz = () => {
 
     const fetchResultat = async () => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/api/FindquizCourse/1/${userInformation.id}`, {
+          const response = await axios.get(`http://127.0.0.1:8000/api/FindquizCourse/${idCourse}/${userInformation.id}`, {
             headers: {
             },
           });
@@ -139,7 +142,7 @@ const Quiz = () => {
       };
     const fetchUserCourseQuiz = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/QuizmyCourse/1`, {
+        const response = await axios.get(`http://127.0.0.1:8000/api/QuizmyCourse/${idCourse}`, {
           headers: {
           },
         });
@@ -157,7 +160,7 @@ const Quiz = () => {
     };
     const fetchUserCourseResultat = async () => {
         const formData = new FormData();
-            formData.append('course_id', 1);
+            formData.append('course_id', idCourse);
             formData.append('compte_id', userInformation.id);
             formData.append('note', result.score);
             let etat;
@@ -203,7 +206,7 @@ const Quiz = () => {
                 {
                     const note = result.score;
                     try {
-                        await axios.put(`http://127.0.0.1:8000/api/updateResultat/1/${userInformation.id}`, {note,etat});
+                        await axios.put(`http://127.0.0.1:8000/api/updateResultat/${idCourse}/${userInformation.id}`, {note,etat});
                         console.log('Update success.');// Handle success, e.g., show a success message or redirect to another page
                       } catch (error) {
                         console.log('Update failed. Please try again. ll'); // Handle error, e.g., show an error message
@@ -333,6 +336,13 @@ const Quiz = () => {
                   <button onClick={handleGenerateCertificate}>Download Certificate</button>
                 </div>):(<h1>you are not succc</h1>)
                 }
+                <div className="d-md-flex">
+                      <Link to={`/Espace_User/WatchCourse/${idCourse}`}>
+                          <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" name="button">
+                            return to course
+                          </button>
+                          </Link>
+                        </div>
               </div>
             )}</>
         ) : (
@@ -346,6 +356,13 @@ const Quiz = () => {
                       return formattedDate;
                   })()}</p>
                 </h3>
+                <div className="d-md-flex">
+                      <Link to={`/Espace_User/WatchCourse/${idCourse}`}>
+                          <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" name="button">
+                            return to course
+                          </button>
+                          </Link>
+                        </div>
           </div>
         )}
         </div>

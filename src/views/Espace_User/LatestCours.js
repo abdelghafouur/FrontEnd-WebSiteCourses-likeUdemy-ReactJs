@@ -327,7 +327,7 @@ const LatestCours = () => {
                         <Link to={`/Espace_User/CourseSingle/${course.id}`}  style={{"marginLeft":"50px"}}><span className="mb-1 d-inline-block text-gray-800">{course.date}</span></Link>
                         {/* Heading */}
                         <div className="position-relative">
-                          <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 me-md-6 me-lg-10 me-xl-4 mb-3">The Complete JavaScript Course 2020: Build Real Projects!</h4></Link>
+                          <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 me-md-6 me-lg-10 me-xl-4 mb-3">{course.title}</h4></Link>
                           <ul className="nav mx-n3 mb-3">
                             <li className="nav-item px-3">
                               <div className="d-flex align-items-center">
