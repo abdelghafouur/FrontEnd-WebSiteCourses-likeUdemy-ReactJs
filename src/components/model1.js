@@ -29,11 +29,13 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
     if (e.target === modalRef.current) {
       setShowModal(false);
       setstylee("")
+      setInfo2("")
     }
   };
   const closeModal1 = (e) => {
     setShowModal(false);
     setstylee("")
+    setInfo2("")
   
 };
   function model1()
@@ -41,30 +43,35 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
       setEtat("etat1")
       setclasse1('divAfficher')
       setclasse2('')
+      setInfo2("")
     }
   function model2()
     {
       setEtat("etat2")
       setclasse1('')
       setclasse2('divAfficher')
+      setInfo2("")
     }
     function model3()
     {
       setEtat("etat3")
       setclasse1('')
       setclasse2('divAfficher')
+      setInfo2("")
     }
     function model4()
     {
       setEtat("etat4")
       setclasse1('')
       setclasse2('divAfficher')
+      setInfo2("")
     }
     function model5()
     {
       setEtat("etat5")
       setclasse1('')
       setclasse2('divAfficher')
+      setInfo2("")
     }
     function Login(e)
     {
@@ -106,7 +113,9 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
     }
     function Register(event)
     {
-            event.preventDefault();
+          event.preventDefault();
+          
+            
             const formData = new FormData();
             formData.append('firstname', Firstname);
             formData.append('lastname', Lastname);
@@ -116,6 +125,17 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
             formData.append('sexe', Sexe);
             formData.append('adresse', Adresse);
             formData.append('password', password);
+            if(etat == "etat3")
+            {
+           
+              formData.append('role', "User");
+            }
+          if(etat == "etat4")
+            {
+             
+              formData.append('role', "Prof");
+            }
+            
             try {
                 axios.post('http://127.0.0.1:8000/api/register',formData, 
                     {
@@ -252,8 +272,8 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
               (etat == "etat4")
               ?(<div style={{backgroundColor:"white"}} >
               <form className="myyform signup" onSubmit={(event)=>Register(event)}>
-              <div className="row">
-                  <div  className="col-sm-6 div4">
+                <div className="row">
+                  <div className="col-sm-6 div4">
                       <div className="row ">
                         <div className="col-sm-6">
                           <input type="text" placeholder="First Name" name="firstname" onChange={(e)=>setFirstname(e.target.value)}/>
@@ -264,8 +284,6 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
                       </div> 
                       <input type="email" placeholder="Your Email" name="email" className="frm" onChange={(e)=>setemail(e.target.value)}/><br/>
                       <input type="tele" placeholder="Your Telephone " name="tele" className="frm" onChange={(e)=>setTele(e.target.value)} /><br/>
-                      <button type="submit">Sign in</button>
-                      {Info2}
                   </div>
                   <div  className="col-sm-6 div4">
                       <div className="row ">
@@ -282,6 +300,7 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
                       </div> 
                       <input type="password" name="password" placeholder="Your Password" className="frm" onChange={(e)=>setpassword(e.target.value)}/><br/>
                       <input type="text" name="adresse" placeholder="Email Adresse"className="frm" onChange={(e)=>setAdresse(e.target.value)} /><br/>
+                      {Info2}<button type="submit" style={{marginLeft: '190px'}}><span>Next</span></button> 
                       
                   </div>
                 </div>
