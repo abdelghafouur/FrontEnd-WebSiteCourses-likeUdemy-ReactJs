@@ -23,6 +23,18 @@ const NavBar = () => {
     sexe: '',
     password: ''
   });
+
+  const [imageSrc, setImageSrc] = useState(
+    ""
+  );
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+    setImageSrc(URL.createObjectURL(file));
+  };
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -52,7 +64,8 @@ const NavBar = () => {
       const response = await axios.get('http://127.0.0.1:8000/api/user/' + userInformation.id); 
       const user = response.data;
       setUserData(user);
-      console.log(user)
+      setImageSrc(`http://127.0.0.1:8000/images/${user.image}`);
+
     } catch (error) {
       console.log(error);
     }
@@ -65,12 +78,43 @@ const NavBar = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.put('http://127.0.0.1:8000/api/user/' + userInformation.id, userData); // Replace with your API endpoint and userId
+      const data = {
+        firstname: userData.firstname,
+        lastname: userData.lastname,
+        email: userData.email,
+        tele: userData.tele,
+        date: userData.date,
+        adresse: userData.adresse,
+        sexe: userData.sexe,
+        password: userData.password,
+      };
+  
+      if (selectedFile instanceof File || selectedFile instanceof Blob) {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          const fileData = reader.result;
+          data.image = fileData;
+          updateUser(data);
+        };
+        reader.readAsDataURL(selectedFile);
+      } else {
+        updateUser(data);
+      }
+    } catch (error) {
+      console.log(error);
+      // Optionally show an error message or perform other actions
+    }
+  };
+  
+  const updateUser = async (data) => {
+    try {
+      const response = await axios.put(`http://127.0.0.1:8000/api/user/${userInformation.id}`, data);
       const updatedUser = response.data;
       setUserData(updatedUser);
-      window.location.reload()
+      console.log(updatedUser);
+      window.location.reload();
       // Optionally show a success message or perform other actions
     } catch (error) {
       console.log(error);
@@ -100,7 +144,15 @@ const NavBar = () => {
                 </div>
                 <div className="modal-body">
                   {/* Form Signin */}
-                  <form className="mb-5" onSubmit={handleSubmit}>
+                  <form className="mb-5" onSubmit={handleSubmit}  encType="multipart/form-data">
+                  <div className="profile-pic">
+      <label className="-label" htmlFor="file">
+        <span className="glyphicon glyphicon-camera"></span>
+        <span>Change Image</span>
+      </label>
+      <input id="file" name="image" type="file" onChange={handleFileChange} />
+      <img src={imageSrc} id="output" width="200" />
+    </div>
       <div style={{ width: "400px", float: "left" }}>
         <div className="form-group mb-5">
           <label htmlFor="modalSigninEmail">
@@ -191,15 +243,15 @@ const NavBar = () => {
               type="radio"
               style={{ marginRight: "40px" }}
               name="sexe"
-              value="M"
-              checked={userData.sexe === "M"}
+              value="Masculin"
+              checked={userData.sexe === "Masculin"}
               onChange={handleInputChange}
             />
             Feminine: <input
               type="radio"
               name="sexe"
-              value="F"
-              checked={userData.sexe === "F"}
+              value="Feminine"
+              checked={userData.sexe === "Feminine"}
               onChange={handleInputChange}
             />
           </div>

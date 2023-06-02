@@ -251,37 +251,38 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
             :(
               (etat == "etat4")
               ?(<div style={{backgroundColor:"white"}} >
-              <form className="myyform signup">
-                <div className="row">
+              <form className="myyform signup" onSubmit={(event)=>Register(event)}>
+              <div className="row">
                   <div  className="col-sm-6 div4">
                       <div className="row ">
                         <div className="col-sm-6">
-                          <input type="text" placeholder="First Name"/>
+                          <input type="text" placeholder="First Name" name="firstname" onChange={(e)=>setFirstname(e.target.value)}/>
                         </div>
                         <div className="col-sm-6">
-                          <input type="text" placeholder="Last Name"/>
+                          <input type="text" placeholder="Last Name" name="lasttname" onChange={(e)=>setLastname(e.target.value)}/>
                         </div>
                       </div> 
-                      <input type="text" placeholder="Your Email" className="frm"/><br/>
-                      <input type="email" placeholder="Your Telephone "className="frm" /><br/>
-                      
+                      <input type="email" placeholder="Your Email" name="email" className="frm" onChange={(e)=>setemail(e.target.value)}/><br/>
+                      <input type="tele" placeholder="Your Telephone " name="tele" className="frm" onChange={(e)=>setTele(e.target.value)} /><br/>
+                      <button type="submit">Sign in</button>
+                      {Info2}
                   </div>
                   <div  className="col-sm-6 div4">
                       <div className="row ">
                         <div className="col-sm-6">
-                          <input type="date" placeholder="First Name"/>
+                          <input type="date" name="date" onChange={(e)=>setDate(e.target.value)}/>
                         </div>
                         <div className="col-sm-6">
-                          <select>
-                            <option>Your Sexe</option>
-                            <option>Masculin</option>
-                            <option>Femenin</option>
+                          <select  name="sexe" onChange={(e)=>setSexe(e.target.value)}>
+                            <option value='rien'>Your Sexe</option>
+                            <option value='Masculin'>Masculin</option>
+                            <option value='Feminin'>Femenin</option>
                           </select>
                         </div>
                       </div> 
-                      <input type="password" placeholder="Your Password" className="frm"/><br/>
-                      <input type="email" placeholder="Email Adresse"className="frm" /><br/>
-                      <button type="button" onClick={() =>model5()} style={{marginLeft: '190px'}}><span>Next</span></button> 
+                      <input type="password" name="password" placeholder="Your Password" className="frm" onChange={(e)=>setpassword(e.target.value)}/><br/>
+                      <input type="text" name="adresse" placeholder="Email Adresse"className="frm" onChange={(e)=>setAdresse(e.target.value)} /><br/>
+                      
                   </div>
                 </div>
               </form>
