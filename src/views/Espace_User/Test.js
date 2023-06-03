@@ -21,6 +21,7 @@ const Quiz = () => {
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null)
     const userInformation = JSON.parse(localStorage.getItem('user'));
     const [Courses, setCourses] = useState([]);
+    const token = localStorage.getItem('token');
     let resultDate;
     const [result, setResult] = useState({
       score: 0,
@@ -38,6 +39,10 @@ const Quiz = () => {
           note: (result.score * 100)/8,
         }, {
           responseType: 'blob', // Set the response type to 'blob' to receive binary data
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
   
         // Create a download link
@@ -66,7 +71,11 @@ const Quiz = () => {
             const certificateData = {
               certificate: base64data,
             };
-            await axios.put(`http://127.0.0.1:8000/api/updateCertificate/${idCourse}/${userId}`, certificateData);
+            await axios.put(`http://127.0.0.1:8000/api/updateCertificate/${idCourse}/${userId}`, certificateData, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
             console.log('Update success.'); // Handle success, e.g., show a success message or redirect to another page
           } catch (error) {
             console.log('Update failed. Please try again.'); // Handle error, e.g., show an error message
@@ -107,6 +116,7 @@ const Quiz = () => {
         try {
           const response = await axios.get(`http://127.0.0.1:8000/api/course/${idCourse}`, {
             headers: {
+              Authorization: `Bearer ${token}`,
             },
           });
     
@@ -126,6 +136,7 @@ const Quiz = () => {
         try {
           const response = await axios.get(`http://127.0.0.1:8000/api/FindquizCourse/${idCourse}/${userInformation.id}`, {
             headers: {
+              Authorization: `Bearer ${token}`,
             },
           });
     
@@ -144,6 +155,7 @@ const Quiz = () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/QuizmyCourse/${idCourse}`, {
           headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -180,7 +192,8 @@ const Quiz = () => {
                         axios.post(`http://127.0.0.1:8000/api/ResultatTest`,formData,
                               {
                                 headers: {
-                                    'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+                                    'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+                                    Authorization: `Bearer ${token}`,
                                   }
                              })
                             .then(response => {
@@ -206,7 +219,11 @@ const Quiz = () => {
                 {
                     const note = result.score;
                     try {
-                        await axios.put(`http://127.0.0.1:8000/api/updateResultat/${idCourse}/${userInformation.id}`, {note,etat});
+                        await axios.put(`http://127.0.0.1:8000/api/updateResultat/${idCourse}/${userInformation.id}`, {note,etat}, {
+                          headers: {
+                            Authorization: `Bearer ${token}`,
+                          },
+                        });
                         console.log('Update success.');// Handle success, e.g., show a success message or redirect to another page
                       } catch (error) {
                         console.log('Update failed. Please try again. ll'); // Handle error, e.g., show an error message

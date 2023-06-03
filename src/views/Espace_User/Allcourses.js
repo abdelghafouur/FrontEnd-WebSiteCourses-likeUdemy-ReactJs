@@ -19,6 +19,7 @@ const Allcourses = () => {
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage] = useState(10);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     // Fetch all courses from the backend API
@@ -31,6 +32,7 @@ const Allcourses = () => {
       const response = await fetch('http://127.0.0.1:8000/api/courses', {
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -51,6 +53,7 @@ const Allcourses = () => {
       const response = await fetch('http://127.0.0.1:8000/api/categories', {
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
 

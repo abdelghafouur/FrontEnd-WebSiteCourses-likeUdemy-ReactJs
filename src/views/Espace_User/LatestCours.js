@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 const LatestCours = () => {
   useAuth();
+  const token = localStorage.getItem('token');
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -29,6 +30,7 @@ const LatestCours = () => {
       const response = await fetch('http://127.0.0.1:8000/api/courses', {
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -49,6 +51,7 @@ const LatestCours = () => {
       const response = await fetch('http://127.0.0.1:8000/api/categories', {
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
 

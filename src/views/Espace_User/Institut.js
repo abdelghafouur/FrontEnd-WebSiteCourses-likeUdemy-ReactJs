@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 const Institut = () => {
   const [formations, setformatoin] = useState([]);
+  const token = localStorage.getItem('token');
     useAuth();
   useEffect(() => {
     AOS.init({
@@ -18,7 +19,11 @@ const Institut = () => {
   }, []);
   useEffect(() => {
     // Fetch the courses from the API
-    axios.get('http://127.0.0.1:8000/api/formations')
+    axios.get('http://127.0.0.1:8000/api/formations' , {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then(response => {
         setformatoin(response.data);
       })

@@ -13,6 +13,7 @@ const ContactUs = () => {
     email: '',
     message: ''
   });
+  const token = localStorage.getItem('token');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +23,11 @@ const ContactUs = () => {
         name: formData.name,
         email: formData.email,
         message: formData.message
+      }, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       console.log('Email sent successfully!!!');

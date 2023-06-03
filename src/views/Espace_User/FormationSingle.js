@@ -11,7 +11,7 @@ import moment from 'moment';
 
 const FormationSingle = () => {
     const isObjectEmpty = {};
-  const { idFormation } = useParams();
+    const { idFormation } = useParams();
     const [course, setCourses] = useState([]);
     const [objectives, setobjectives] = useState([]);
     const [Comments, setComments] = useState([]);
@@ -22,6 +22,8 @@ const FormationSingle = () => {
     const [myEtat ,setmyEtat]= useState('')
     const userInformation = JSON.parse(localStorage.getItem('user')); 
     const [datee, setdatee] = useState([]);
+    const token = localStorage.getItem('token');
+    
   
     useEffect(() => {
       const targetDate = moment(datee);
@@ -46,6 +48,7 @@ const FormationSingle = () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/formation/${idFormation}`, {
           headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
   
@@ -57,6 +60,7 @@ const FormationSingle = () => {
           try {
             const response3 = await axios.get(`http://127.0.0.1:8000/api/objectFormation/${data.id}`, {
               headers: {
+                Authorization: `Bearer ${token}`,
               },
             });
       
@@ -73,6 +77,7 @@ const FormationSingle = () => {
           try {
             const response5 = await axios.get(`http://127.0.0.1:8000/api/CommentFormation/${data.id}`, {
               headers: {
+                Authorization: `Bearer ${token}`,
               },
             });
       
@@ -111,7 +116,8 @@ const FormationSingle = () => {
                 axios.post('http://127.0.0.1:8000/api/registerCommentsFor',formData, 
                     {
                         headers: {
-                            'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+                            'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+                            Authorization: `Bearer ${token}`,
                           }
                      })
                     .then(response => {
@@ -141,6 +147,10 @@ const FormationSingle = () => {
               lastname: userInformation.lastname,
             }, {
               responseType: 'blob', // Set the response type to 'blob' to receive binary data
+            } , {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             });
       
             // Create a download link
@@ -169,7 +179,11 @@ const FormationSingle = () => {
                 const certificateData = {
                   certificate: base64data,
                 };
-                await axios.put(`http://127.0.0.1:8000/api/updateAtestationInscr/1/${userId}`, certificateData);
+                await axios.put(`http://127.0.0.1:8000/api/updateAtestationInscr/1/${userId}`, certificateData , {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                });
                 console.log('Update success.'); // Handle success, e.g., show a success message or redirect to another page
                 window.location.reload();
               } catch (error) {
@@ -189,7 +203,8 @@ const FormationSingle = () => {
                           axios.post(`http://127.0.0.1:8000/api/FormationInscp`,formData,
                                 {
                                   headers: {
-                                      'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+                                      'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+                                      Authorization: `Bearer ${token}`,
                                     }
                                })
                               .then(response => {
@@ -217,6 +232,7 @@ const FormationSingle = () => {
           try {
             const response = await axios.get(`http://127.0.0.1:8000/api/FormationInscpget/1/${userInformation.id}`, {
               headers: {
+                Authorization: `Bearer ${token}`,
               },
             });
       
@@ -238,6 +254,10 @@ const FormationSingle = () => {
               const userId = userInformation.id; // Assuming you have the user's ID
               const response = await axios.get(`http://127.0.0.1:8000/api/AtestationDown/1/${userId}`, {
                   responseType: 'blob', // Set the response type to 'blob' to receive binary data
+              } , {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
               });
         
               // Create a download link

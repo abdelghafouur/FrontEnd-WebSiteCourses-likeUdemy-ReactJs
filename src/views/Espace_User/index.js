@@ -30,6 +30,7 @@ const Index = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const userInformation = JSON.parse(localStorage.getItem('user')); 
   const [searchTerm, setSearchTerm] = useState("");
+  const token = localStorage.getItem('token');
   const [userData, setUserData] = useState({
     firstname: '',
     lastname: '',
@@ -84,17 +85,26 @@ const Index = () => {
       const flickityOptions = {
         initialIndex: 2
     }
+    
     useEffect(() => {
       fetchUserData();
       // Fetch the courses from the API
-      axios.get('http://127.0.0.1:8000/api/courses')
+      axios.get('http://127.0.0.1:8000/api/courses' , {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then(response => {
           setCourses(response.data);
         })
         .catch(error => {
           console.log(error);
         });
-      axios.get('http://127.0.0.1:8000/api/categories')
+      axios.get('http://127.0.0.1:8000/api/categories' , {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(response => {
         setCategories(response.data);
       })
@@ -112,7 +122,7 @@ const Index = () => {
       $('[data-fancybox]').fancybox();
     }, []);
     const handleLogout = async () => {
-      const token = localStorage.getItem('token');
+      
       axios.post('http://127.0.0.1:8000/api/logout', {}, {
         headers: {
           Authorization: 'Bearer ' + token,
@@ -134,7 +144,11 @@ const Index = () => {
     };
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/user/' + userInformation.id); 
+        const response = await axios.get('http://127.0.0.1:8000/api/user/' + userInformation.id , {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }); 
         const user = response.data;
         setUserData(user);
         setImageSrc(`http://127.0.0.1:8000/images/${user.image}`);
@@ -183,7 +197,11 @@ const Index = () => {
     
     const updateUser = async (data) => {
       try {
-        const response = await axios.put(`http://127.0.0.1:8000/api/user/${userInformation.id}`, data);
+        const response = await axios.put(`http://127.0.0.1:8000/api/user/${userInformation.id}`, data , {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const updatedUser = response.data;
         setUserData(updatedUser);
         console.log(updatedUser);

@@ -15,6 +15,7 @@ const MyCoures = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [filter, setFilter] = useState('default');
   const userInformation = JSON.parse(localStorage.getItem('user'));  // Retrieve user information
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
       fetchUserCourses()
@@ -27,6 +28,7 @@ const MyCoures = () => {
           filter: filter, // Include the filter parameter
         },
         headers: {
+          Authorization: `Bearer ${token}`,
         },
       });
 

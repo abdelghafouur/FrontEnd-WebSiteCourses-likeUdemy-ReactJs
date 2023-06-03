@@ -23,6 +23,7 @@ const WatchCourse = () => {
   const [Resultaaat, setResultaaat] = useState([]);
 
   const userInformation = JSON.parse(localStorage.getItem('user')); 
+  const token = localStorage.getItem('token');
   React.useEffect(() => {
     $('[data-fancybox]').fancybox(); // Initialize fancybox
 
@@ -40,6 +41,10 @@ const handleDownloadCertificate = async () => {
       const userId = userInformation.id; // Assuming you have the user's ID
       const response = await axios.get(`http://127.0.0.1:8000/api/certificategetDown/${idCourse}/${userId}`, {
           responseType: 'blob', // Set the response type to 'blob' to receive binary data
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       // Create a download link
@@ -64,6 +69,7 @@ const fetchUserCourses = async () => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/api/course/${idCourse}`, {
       headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -75,6 +81,7 @@ const fetchUserCourses = async () => {
         const userId = userInformation.id; // Assuming you have the user's ID
         const response8 = await axios.get(`http://127.0.0.1:8000/api/FindquizCourse/${idCourse}/${userId}`, {
           headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
   
@@ -93,6 +100,7 @@ const fetchUserCourses = async () => {
       try {
         const response4 = await axios.get(`http://127.0.0.1:8000/api/videoCourses/${data.id}`, {
           headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
   

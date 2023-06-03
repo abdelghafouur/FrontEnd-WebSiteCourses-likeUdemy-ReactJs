@@ -20,6 +20,7 @@ const CourseSingle = () => {
   const [compte_id1 ,setcompte_id1 ]= useState('')
   const [myEtat ,setmyEtat ]= useState('')
   const userInformation = JSON.parse(localStorage.getItem('user')); 
+  const token = localStorage.getItem('token');
 
   React.useEffect(() => {
     $('[data-fancybox]').fancybox();
@@ -36,6 +37,7 @@ const CourseSingle = () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/course/${idCourse}`, {
         headers: {
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -46,6 +48,7 @@ const CourseSingle = () => {
         try {
           const response3 = await axios.get(`http://127.0.0.1:8000/api/objectCourses/${data.id}`, {
             headers: {
+              Authorization: `Bearer ${token}`,
             },
           });
     
@@ -62,6 +65,7 @@ const CourseSingle = () => {
         try {
           const response4 = await axios.get(`http://127.0.0.1:8000/api/videoCourses/${data.id}`, {
             headers: {
+              Authorization: `Bearer ${token}`,
             },
           });
     
@@ -78,6 +82,7 @@ const CourseSingle = () => {
         try {
           const response2 = await axios.get(`http://127.0.0.1:8000/api/courses`, {
             headers: {
+              Authorization: `Bearer ${token}`,
             },
           });
     
@@ -95,6 +100,7 @@ const CourseSingle = () => {
         try {
           const response5 = await axios.get(`http://127.0.0.1:8000/api/CommentCourses/${data.id}`, {
             headers: {
+              Authorization: `Bearer ${token}`,
             },
           });
     
@@ -127,7 +133,8 @@ const CourseSingle = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/registerComments', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+          'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+          Authorization: `Bearer ${token}`,
         }
       });
   
@@ -135,7 +142,9 @@ const CourseSingle = () => {
   
       try {
         const response8 = await axios.get(`http://127.0.0.1:8000/api/CommentCoursesAvg/${idCourse}`, {
-          headers: {}
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
   
         if (response8.status === 200) {
@@ -143,7 +152,11 @@ const CourseSingle = () => {
           const rating = data8;
   
           try {
-            await axios.put(`http://127.0.0.1:8000/api/updateRatCourse/${idCourse}`, { rating });
+            await axios.put(`http://127.0.0.1:8000/api/updateRatCourse/${idCourse}`, { rating } , {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
             console.log('Update success.'); // Handle success, e.g., show a success message or redirect to another page
             window.location.reload()
           } catch (error) {
@@ -175,7 +188,8 @@ const CourseSingle = () => {
                     axios.post(`http://127.0.0.1:8000/api/CoursesAcheter`,formData,
                           {
                             headers: {
-                                'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+                                'Content-Type': 'multipart/form-data', // Set the content type to multipart/form-data
+                                Authorization: `Bearer ${token}`,
                               }
                          })
                         .then(response => {
@@ -203,6 +217,7 @@ const CourseSingle = () => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/api/CoursesAcheterbyUser/1/${userInformation.id}`, {
         headers: {
+          Authorization: `Bearer ${token}`,
         },
       });
 

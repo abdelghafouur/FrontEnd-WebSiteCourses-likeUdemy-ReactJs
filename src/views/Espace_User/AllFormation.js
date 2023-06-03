@@ -17,6 +17,7 @@ const AllFormation = () => {
   const [selectedDate, setSelectedDate] = useState("default");
   const [currentPage, setCurrentPage] = useState(0);
   const [perPage] = useState(10);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     // Fetch all courses from the backend API
@@ -29,6 +30,7 @@ const AllFormation = () => {
       const response = await fetch('http://127.0.0.1:8000/api/formations', {
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -49,6 +51,7 @@ const AllFormation = () => {
       const response = await fetch('http://127.0.0.1:8000/api/categories', {
         headers: {
           Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
 
