@@ -18,7 +18,9 @@ import AllFormation from './views/Espace_User/AllFormation';
 import FormationSingle from './views/Espace_User/FormationSingle';
 import Quiz from './views/Espace_User/Test';
 import StartQuiz from './views/Espace_User/StartQuiz';
-
+import ForgotPasswordForm from './views/Espace_Visiteur/ForgotPasswordForm';
+import VerificationToken from './views/Espace_Visiteur/VerificationToken';
+import NewPasswordComponent from './views/Espace_Visiteur/NewPasswordComponent';
 
 
 export default function App(){
@@ -44,6 +46,9 @@ export default function App(){
               <Route element={<FormationSingle/>}  path="/Espace_User/FormationSingle/:idFormation" />
               <Route element={<Quiz/>}  path="/Espace_User/CourseSingle/Quiz/:idCourse" />
               <Route element={<StartQuiz/>}  path="/Espace_User/CourseSingle/StartQuiz/:idCourse" />
+              <Route element={<ForgotPasswordForm/>}  path="/ForgotPasswordForm" />
+              <Route element={<VerificationToken/>}  path="/VerificationToken" />
+              <Route element={<NewPasswordComponent/>}  path="/NewPasswordComponent/:code" />
 
 
       </Routes>

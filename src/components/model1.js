@@ -6,6 +6,7 @@ import pic2 from '../pic/logod3.png'
 import './model.css'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => {
   // close the modal when clicking outside the modal.
@@ -82,16 +83,15 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
 
             console.log(response.data); // You can access the response data here
             // Redirect to another page or perform any other action
-
             const { token, user } = response.data;
-
-
             // Store user information in state or browser storage
             localStorage.setItem('user', JSON.stringify(user));
 
             // Store the token in local storage or cookie
             localStorage.setItem('token', token);
             navigate('/Espace_User/');
+
+            //  window.location.href = 'http://localhost:3001/Espace_User/?user=' + encodeURIComponent(JSON.stringify(user)) + '&token=' + encodeURIComponent(token);
         })
         .catch(error => {
             // Handle login error
@@ -145,9 +145,26 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
                      })
                     .then(response => {
                         const { user, message } = response.data;
-                        console.log('Login successful:', message);
+                        console.log('Login successful');
                         console.log(response.data); 
-                        setInfo2('Login successful:')
+                        setInfo2('Login successful:');
+                        const id = user.id; 
+                        const role = user.role; 
+
+                        if(role == "User")
+                        {
+                      
+                          axios.post('http://127.0.0.1:8000/api/UserMailSend', {id})
+                                    .then((response) => {
+                                      console.log('snnnd');
+                                    })
+                                    .catch((error) => {
+                                      console.log('nott');
+                                    });
+                        }
+                        console.log('Login successful');
+                        
+
                     })
                     .catch(error => {
                         if (error.response) {
@@ -200,7 +217,10 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
                         <span className="highlight"></span>
                         <span className="bar"></span>
                         <label className="label">Password</label>
-                        <p>Forget your password ? <span> Click here. </span></p>
+                        <p>Forget your password ? <span>  
+                        <Link to="/ForgotPasswordForm">
+                        Click here.
+                        </Link></span></p>
                         {Info}
                       </div>
                       <div>    

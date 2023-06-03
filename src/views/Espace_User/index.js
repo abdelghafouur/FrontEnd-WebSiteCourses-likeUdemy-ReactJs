@@ -17,8 +17,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Index = () => { 
-  useAuth();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const checkTokenAndRedirect = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/'); // Redirect to login page if token is not found
+    }
+  };
+    
   const [courses, setCourses] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
@@ -53,7 +59,8 @@ const Index = () => {
 
   const handleSelectCourse = (course) => {
     const filteredCourses = courses.find(elemntCourse => elemntCourse.title === course);
-    setSelectedCourseId(filteredCourses.id);
+    if(filteredCourses)
+      {setSelectedCourseId(filteredCourses.id);}
   };
 
   const MyfilteredCourses = courses.filter((course) =>
@@ -72,6 +79,7 @@ const Index = () => {
     useEffect(() => {
         AOS.init({
         });
+        checkTokenAndRedirect();
       }, []);
       const flickityOptions = {
         initialIndex: 2

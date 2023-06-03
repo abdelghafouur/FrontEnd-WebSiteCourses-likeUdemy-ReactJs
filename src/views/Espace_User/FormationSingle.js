@@ -6,6 +6,7 @@ import NavBar from './NavBar'
 import Footer from './Footer'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 
 const FormationSingle = () => {
@@ -20,6 +21,20 @@ const FormationSingle = () => {
     const [compte_id1 ,setcompte_id1 ]= useState('')
     const [myEtat ,setmyEtat]= useState('')
     const userInformation = JSON.parse(localStorage.getItem('user')); 
+    const [datee, setdatee] = useState([]);
+  
+    useEffect(() => {
+      const targetDate = moment(datee);
+      const countdownInterval = setInterval(() => {
+        const remainingTime = targetDate.diff(moment(), 'seconds');
+        setRemainingTime(remainingTime);
+      }, 1000);
+  
+      return () => {
+        clearInterval(countdownInterval);
+      };
+    }, [datee]);
+    const [remainingTime, setRemainingTime] = useState(0);
     useEffect(() => {
         fetchUserCourses()
         setcourse_id1(idFormation)
@@ -38,6 +53,7 @@ const FormationSingle = () => {
   
           const data = response.data;
           setCourses(data);
+          setdatee(data.date)
           try {
             const response3 = await axios.get(`http://127.0.0.1:8000/api/objectFormation/${data.id}`, {
               headers: {
@@ -78,6 +94,11 @@ const FormationSingle = () => {
         console.error(error);
       }
     };
+    const days = Math.floor(remainingTime / (24 * 60 * 60));
+  const hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+  const minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+  const seconds = Math.floor(remainingTime % 60);
+
     function RegisterComment(event)
     {
             event.preventDefault();
@@ -283,23 +304,23 @@ const FormationSingle = () => {
                         </ul>
                         <h1 className="text-center mb-5">{course.title}</h1>
                         <div className="row w-xl-65 mx-xl-auto text-center">
-                        <div className="col-6 col-md-3 mb-6 mb-md-0">
-                            <div className="h1 text-blue mb-2">20</div>
-                            <p className="h5 mb-0">DAYS</p>
-                        </div>
-                        <div className="col-6 col-md-3 mb-6 mb-md-0">
-                            <div className="h1 text-blue mb-2">17</div>
-                            <p className="h5 mb-0">HOURS</p>
-                        </div>
-                        <div className="col-6 col-md-3 mb-6 mb-md-0">
-                            <div className="h1 text-blue mb-2">36</div>
-                            <p className="h5 mb-0">MINUTES</p>
-                        </div>
-                        <div className="col-6 col-md-3 mb-6 mb-md-0">
-                            <div className="h1 text-blue mb-2">40</div>
-                            <p className="h5 mb-0">SECONDS</p>
-                        </div>
-                        </div>
+      <div className="col-6 col-md-3 mb-6 mb-md-0">
+        <div className="h1 text-blue mb-2">{days}</div>
+        <p className="h5 mb-0">DAYS</p>
+      </div>
+      <div className="col-6 col-md-3 mb-6 mb-md-0">
+        <div className="h1 text-blue mb-2">{hours}</div>
+        <p className="h5 mb-0">HOURS</p>
+      </div>
+      <div className="col-6 col-md-3 mb-6 mb-md-0">
+        <div className="h1 text-blue mb-2">{minutes}</div>
+        <p className="h5 mb-0">MINUTES</p>
+      </div>
+      <div className="col-6 col-md-3 mb-6 mb-md-0">
+        <div className="h1 text-blue mb-2">{seconds}</div>
+        <p className="h5 mb-0">SECONDS</p>
+      </div>
+    </div>
                     </div>
                     </div>
                 </div>
