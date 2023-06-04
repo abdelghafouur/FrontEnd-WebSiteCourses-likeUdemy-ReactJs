@@ -3,8 +3,10 @@ import axios from "axios";
 import './Test.css';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useAuth from '../../function/useAuth';
 
 const Quiz = () => {
+  useAuth()
     const { idCourse } = useParams();
     const currentDate = new Date();
     const [activeQuestion, setActiveQuestion] = useState(0)
@@ -31,6 +33,7 @@ const Quiz = () => {
 
 
     const handleGenerateCertificate = async () => {
+      
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/generate-certificate', {
           firstname: userInformation.firstname,
@@ -341,18 +344,17 @@ const Quiz = () => {
                   Total Score:<span> {result.score}</span>
                 </p>
                 <p>
-                  Total Note:<span>  { (result.score * 100)/20 } </span>
+                  Total Note:<span>  { (result.score * 100)/20 } % </span>
                 </p>
-                {result.score > 14 ?(<div>
-                  <h1>you are succc ! </h1>
-                  <h2>Certificate Generator</h2>
+                {result.score >= 14 ?(<div>
+                  <h1>Congratulations, you have succeeded! ! </h1>
                   <button onClick={handleGenerateCertificate}>Download Certificate</button>
-                </div>):(<h1>you are not succc</h1>)
+                </div>):(<h1>Unfortunately, you did not pass.</h1>)
                 }
                 <div className="d-md-flex">
                       <Link to={`/Espace_User/WatchCourse/${idCourse}`}>
                           <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" name="button">
-                            return to course
+                            Back to course
                           </button>
                           </Link>
                         </div>
@@ -360,18 +362,20 @@ const Quiz = () => {
             )}</>
         ) : (
           <div className="result">
-                <h3>Sorryyyyyyyyyyyyyyyyy you can just after 15 day </h3>
-                <h3>Sorryyyyyyyyyyyyyyyyy you can just in date :
-                <p>Date + 15 days: {(() => {
+            
+                <h3>Please note that you must wait for a period of 15 days before retaking the test.  </h3> 
+                <h3>This allows sufficient time for further study and reflection.</h3>
+                <h3>Your last test was taken on <strong style={{color:"red"}}> {ResultatFind.date}.  </strong></h3>
+                <h3>The earliest date you can retake the test is <strong style={{color:"red"}}> {(() => {
                       const futureDate = new Date(ResultatFind.date);
                       futureDate.setDate(futureDate.getDate() + 15);
                       const formattedDate = futureDate.toLocaleDateString();
                       return formattedDate;
-                  })()}</p>
-                </h3>
-                <div className="d-md-flex">
+                  })()}.</strong> </h3>
+                <h3 style={{color:"red"}}>Thank you for your understanding.</h3>
+                <div  style={{textAlign: 'center'}}>
                       <Link to={`/Espace_User/WatchCourse/${idCourse}`}>
-                          <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" name="button">
+                          <button style={{textAlign: 'center'}} className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" name="button">
                             return to course
                           </button>
                           </Link>

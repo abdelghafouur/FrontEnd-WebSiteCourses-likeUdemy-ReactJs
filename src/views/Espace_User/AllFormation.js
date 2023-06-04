@@ -236,7 +236,7 @@ const AllFormation = () => {
                               onChange={handlePriceChange}
                              
                               name="customRadio" className="custom-control-input" />
-                              <label className="custom-control-label font-size-base" htmlFor="pricecustomradio2">Free (3)</label>
+                              <label className="custom-control-label font-size-base" htmlFor="pricecustomradio2">Low </label>
                             </li>
                             <li className="custom-control custom-radio">
                               <input type="radio" id="pricecustomradio3"
@@ -244,7 +244,7 @@ const AllFormation = () => {
                                onChange={handlePriceChange}
                                
                               name="customRadio" className="custom-control-input" />
-                              <label className="custom-control-label font-size-base" htmlFor="pricecustomradio3">Paid (15)</label>
+                              <label className="custom-control-label font-size-base" htmlFor="pricecustomradio3">High </label>
                             </li>
                           </ul>
                         </div>

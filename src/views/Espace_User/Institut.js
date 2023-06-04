@@ -198,8 +198,8 @@ const Institut = () => {
                 <div className="container container-wd">
                   <div className="row align-items-center mb-6">
                     <div className="col-md-6Neww order-2" data-aos="fade-left" data-aos-duration="800">
-                      <h2>Learn at your own pace</h2>
-                      <p className="line-clamp-3 line-height-md">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.Join millions of people from around the world learning together. Online learning is as easy and natural as chatting.</p>
+                      <h2>Cutting-edge Education</h2>
+                      <p className="line-clamp-3 line-height-md">At New Generation, we embrace innovation and stay at the forefront of educational advancements. Our curriculum is designed to equip you with the skills and knowledge needed to thrive in today's rapidly changing world..</p>
                     </div>
                     <div className="col-md-6Neww  order-1 mb-8 mb-md-0" data-aos="fade-up-right" data-aos-duration="800">
                       <img className="img-fluid" src="../assets/img/post/post-10.png" alt="..." />
@@ -207,8 +207,8 @@ const Institut = () => {
                   </div>
                   <div className="row align-items-center">
                     <div className="col-md-6Neww  order-2 order-md-1" data-aos="fade-right" data-aos-duration="2000">
-                      <h2>Community of opportunities</h2>
-                      <p className="line-clamp-3 line-height-md">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.Join millions of people from around the world learning together. Online learning is as easy and natural as chatting.</p>
+                      <h2>Future Opportunities</h2>
+                      <p className="line-clamp-3 line-height-md">Studying at New Generation opens doors to exciting future opportunities. Our institute has a strong network of industry connections, internships, and career services, helping you launch a successful career or pursue further education.</p>
                     </div>
                     <div className="col-md-6Neww  order-1 mb-8 mb-md-0 order-md-2 text-right" data-aos="zoom-in" data-aos-duration="2000">
                       <img className="img-fluid" src="../assets/img/post/post-11.png" alt="..." />

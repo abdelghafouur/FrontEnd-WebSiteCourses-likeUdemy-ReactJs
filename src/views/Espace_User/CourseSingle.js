@@ -182,7 +182,7 @@ const CourseSingle = () => {
   };
   const fetchUserCoursesAcheter= async () => {
     const formData = new FormData();
-        formData.append('course_id', 1);
+        formData.append('course_id', idCourse);
         formData.append('compte_id', userInformation.id);
                 try {
                     axios.post(`http://127.0.0.1:8000/api/CoursesAcheter`,formData,
@@ -215,7 +215,7 @@ const CourseSingle = () => {
   };
   const fetchCoursesAcheterbyUser = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/CoursesAcheterbyUser/1/${userInformation.id}`, {
+      const response = await axios.get(`http://127.0.0.1:8000/api/CoursesAcheterbyUser/${idCourse}/${userInformation.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -240,11 +240,10 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
           <p className="p" >Déja membre?  <span onClick={() =>model1()} href="#"> Connexion. </span>  </p>
           </div>
           <div className="col-sm-6 div3 div2 mmm">
-            <h6 className="par" >The course course are ar course are are academic course are course are course are course are</h6>
-              <button className="btn1" onClick={() =>model3()}>S'enregistrer</button><br/>
-              <h2>OU</h2>  
-              <h6 className="par2" >The course course are ar course are are academic course are course are course are course are</h6> 
-              <button className="btn2" onClick={() =>model4()}>Condddddnexion</button>
+            <h6 className="par" >Are you new to our website? Register now to gain access to our wide range of online courses and educational resources</h6>
+              <button className="btn1" onClick={() =>model3()} style={{marginBottom:"18px"}} >Register as Student</button><br/>
+              <h6 className="par2" >Are you an expert in your field? Register now to share your knowledge and become an instructor on our platform.</h6> 
+              <button className="btn1" onClick={() =>model4()}>Register as Professor</button>
           </div>
       </div>)
           :(

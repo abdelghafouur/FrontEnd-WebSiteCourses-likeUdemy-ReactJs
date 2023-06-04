@@ -6,9 +6,10 @@ import NavBar from './NavBar'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import useAuth from '../../function/useAuth';
 
 const WatchCourse = () => { 
+  useAuth()
   const { idCourse } = useParams();
   const count = 0
   const [course, setCourses] = useState([]);
@@ -148,7 +149,7 @@ const fetchUserCourses = async () => {
                   <div className="d-md-flex align-items-center justify-content-between" style={{"marginBottom":"100px","marginTop":"100px"}}>
                   <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="btn btn-blue d-flex align-items-center mb-5 mb-md-0 btn-block mw-md-280p justify-content-center">
                       <i className="fas fa-arrow-left font-size-xs" />
-                      <span className="ms-3">Introduction</span>
+                      <span className="ms-3">Back to Course</span>
                     </Link>
                     <Link to={`/Espace_User/CourseSingle/StartQuiz/${course.id}`}  className="btn btn-blue d-flex align-items-center btn-block mw-md-280p justify-content-center mt-0">
                       <span className="me-3">Lansez Quiz</span>
