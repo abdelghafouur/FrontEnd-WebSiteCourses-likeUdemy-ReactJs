@@ -31,7 +31,7 @@ const ResetPassword = () => {
   };
   return (
     <div className="container022">
-      <div className="col-md-4 offset-md-4 form form2">
+      <div className="col-md-4 offset-md-4 form form2 form3">
       <h1 className="text-center"> Reset Password</h1>
       <div>
         <label className="form-group">New Password:</label>

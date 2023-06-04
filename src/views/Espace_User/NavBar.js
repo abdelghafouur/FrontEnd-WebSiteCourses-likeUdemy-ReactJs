@@ -312,7 +312,7 @@ const NavBar = () => {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-md bg-primary rounded py-4 mt-4" aria-labelledby="navbarVerticalMenu">
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Design")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Design")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={21} viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,7 +324,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Business")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Business")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -336,7 +336,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("SoftwareDevelopment")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("SoftwareDevelopment")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -354,7 +354,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("PersonalDevelopment")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("PersonalDevelopment")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={14} height={18} viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -369,7 +369,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Photography")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Photography")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -380,7 +380,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Music")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Music")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -391,7 +391,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Marketing")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown">
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Marketing")}`} className="dropdown-link dropdown-toggle" >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -405,7 +405,7 @@ const NavBar = () => {
                         </Link>
                       </li>
                       <li className="dropdown-item dropright">
-                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Finance")}`} className="dropdown-link dropdown-toggle" data-bs-toggle="dropdown" >
+                      <Link to={`/Espace_User/Allcourses/${encodeURIComponent("Finance")}`} className="dropdown-link dropdown-toggle"  >
                           <div className="me-4 d-flex text-white icon-xs">
                             {/* Icon */}
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -429,7 +429,7 @@ const NavBar = () => {
                   </Link>
                     </li>
                     <li className="nav-item dropdown">
-                <a href="#" className="nav-link dropdown-toggle px-xl-4" id="navbarShop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" className="nav-link dropdown-toggle px-xl-4" id="navbarShop" data-bs-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                     Categories
                   </a>
                   <ul className="dropdown-menu border-xl shadow-none" aria-labelledby="navbarShop">

@@ -41,9 +41,8 @@ const Index = () => {
     sexe: '',
     password: ''
   });
-  const [imageSrc, setImageSrc] = useState(
-    ""
-  );
+  const [imageSrc, setImageSrc] = useState("");
+  const [imageSrc1, setImageSrc1] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -548,7 +547,7 @@ const Index = () => {
                   </Link>
                 </li>
                 <li className="nav-item dropdown">
-                <a href="#" className="nav-link dropdown-toggle px-xl-4" id="navbarShop" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" className="nav-link dropdown-toggle px-xl-4" id="navbarShop" data-bs-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
                     Categories
                   </a>
                   <ul className="dropdown-menu border-xl shadow-none" aria-labelledby="navbarShop">
@@ -710,7 +709,7 @@ const Index = () => {
                       </Link>
                     </div>
                     <Link to={`/Espace_User/CourseSingle/${course.id}`} className="card-img sk-thumbnail d-block">
-                      <img className="rounded shadow-light-lg" src={`../${course.image}`} alt="..." />
+                      <img className="rounded shadow-light-lg" src={`http://127.0.0.1:8000/images/${course.image}`} alt="..." />
                     </Link>
                     <span className="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
                       <span className="text-white text-uppercase fw-bold font-size-xs">{course.category.name}</span>
@@ -780,7 +779,7 @@ const Index = () => {
             <div className="row align-items-end mb-md-7 mb-4" data-aos="fade-up">
               <div className="col-md mb-4 mb-md-0">
                 <h1 className="mb-1">Trending Categories</h1>
-                <p className="font-size-lg mb-0 text-capitalize">Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                
               </div>
               <div className="col-md-auto">
               <Link to="/Espace_User/Allcourses"  className="d-flex align-items-center fw-medium">
@@ -1043,7 +1042,6 @@ const Index = () => {
             <div className="row align-items-end mb-4 mb-md-7" data-aos="fade-up">
               <div className="col-md mb-4 mb-md-0">
                 <h1 className="mb-1">Latest News</h1>
-                <p className="font-size-lg mb-0 text-capitalize">Discover your perfect program in our courses.</p>
               </div>
               <div className="col-md-auto">
               <Link to="/Espace_User/LatestCours" className="d-flex align-items-center fw-medium">
@@ -1065,7 +1063,7 @@ const Index = () => {
                   {/* Image */}
                   <div className="card-zoom position-relative">
                   <Link to={`/Espace_User/CourseSingle/${course.id}`} className="card-img d-block sk-thumbnail img-ratio-3">
-                      <img className="rounded shadow-light-lg img-fluid" src={`../${course.image}`}  alt="..." />
+                      <img className="rounded shadow-light-lg img-fluid" src={`http://127.0.0.1:8000/images/${course.image}`}   alt="..." />
                       </Link>
                       <Link to={`/Espace_User/CourseSingle/${course.id}`} className="badge sk-fade-bottom badge-lg badge-purple badge-pill badge-float bottom-0 left-0 mb-4 ms-4 px-5 me-4">
                       <span className="text-white fw-normal font-size-sm">{course.category.name}</span>

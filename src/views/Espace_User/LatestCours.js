@@ -317,7 +317,7 @@ const LatestCours = () => {
                             </Link>
                         </div>
                         <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="card-img sk-thumbnail img-ratio-2 d-block">
-                          <img className="rounded shadow-light-lg" src={`../${course.image}`}  alt="..." />
+                          <img className="rounded shadow-light-lg" src={`http://127.0.0.1:8000/images/${course.image}`}   alt="..." />
                           </Link>
                         <span className="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
                           <span className="text-white text-uppercase fw-bold font-size-xs">{course.category.name}</span>

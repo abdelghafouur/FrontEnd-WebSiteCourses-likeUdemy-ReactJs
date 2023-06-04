@@ -261,7 +261,7 @@ const AllFormation = () => {
                         <div className="row gx-0 align-items-center">
                           {/* Image */}
                          <Link to={`/Espace_User/FormationSingle/${formation.id}`}  className="col-auto d-block mw-md-152" style={{maxWidth: '120px'}}>
-                            <img className="img-fluid rounded shadow-light-lg h-100 h-md-auto o-f-c" src={`../${formation.image}`} alt="..." />
+                            <img className="img-fluid rounded shadow-light-lg h-100 h-md-auto o-f-c" src={`http://127.0.0.1:8000/images/${formation.image}`} alt="..." />
                           </Link>
                           {/* Body */}
                           <div className="col">

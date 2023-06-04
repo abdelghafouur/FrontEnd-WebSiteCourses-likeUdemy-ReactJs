@@ -240,8 +240,13 @@ const Home = () => {
             <div className="col-md-8 order-md-1" data-aos="fade-left" data-aos-delay={50}>
               <div className="me-xl-10">
                 <h4 className="text-white">HELLO THERE</h4>
-                <h1 className="text-white display-5 mb-4 fw-medium">My name is Jessica John</h1>
-                <p className="text-white me-xl-11 mb-5">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great.</p>
+                <h1 className="text-white display-5 mb-4 fw-medium">My name is Khadija Lmlali</h1>
+                <p className="text-white me-xl-11 mb-5">I am a professor and I specialize in . <br/>
+                In my courses, I aim to create an engaging and interactive learning environment<br/>
+                 where students can explore and deepen their understanding of the subject matter.<br/>
+                Throughout the course, I will strive to provide comprehensive and well-structured <br/>
+                lessons, along with relevant resources and materials. I encourage active participation <br/>
+                from students and welcome their questions and contributions.</p>
                 <div className="row mb-4 mb-md-6">
                   <div className="col-6 col-md-3 mb-6 mb-md-0">
                     <div className="h1 text-white">

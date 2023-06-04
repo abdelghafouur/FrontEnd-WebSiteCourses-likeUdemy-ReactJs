@@ -36,13 +36,9 @@ const Quiz = () => {
           firstname: userInformation.firstname,
           lastname: userInformation.lastname,
           course: Courses.title,
-          note: (result.score * 100)/8,
+          note: (result.score * 100)/20,
         }, {
           responseType: 'blob', // Set the response type to 'blob' to receive binary data
-        }, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
         });
   
         // Create a download link
@@ -345,9 +341,9 @@ const Quiz = () => {
                   Total Score:<span> {result.score}</span>
                 </p>
                 <p>
-                  Total Note:<span>  { (result.score * 100)/8 } </span>
+                  Total Note:<span>  { (result.score * 100)/20 } </span>
                 </p>
-                {result.score > 4 ?(<div>
+                {result.score > 14 ?(<div>
                   <h1>you are succc ! </h1>
                   <h2>Certificate Generator</h2>
                   <button onClick={handleGenerateCertificate}>Download Certificate</button>

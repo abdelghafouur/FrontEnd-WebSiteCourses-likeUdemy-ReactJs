@@ -45,14 +45,14 @@ const Institut = () => {
                     <div className="col-lg-6">
                       <div className="ms-xl-5">
                         <h1 className="font-lora fw-bold text-black mb-4">Welcome to New Generation</h1>
-                        <p className="mb-5 line-height-lg">Sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                        <p className="mb-5 line-height-lg">At our institute, we are dedicated to providing a dynamic and forward-thinking educational experience. We believe in nurturing the talents and potential of each individual student, empowering them to thrive in an ever-evolving world.
+                          At New Generation, we prioritize innovation and excellence in education. Our experienced and passionate faculty members are committed to delivering high-quality instruction, leveraging the latest teaching methodologies and technologies. We foster a stimulating and inclusive learning environment that encourages creativity, critical thinking, and collaboration..</p>
                         <ul className="mb-6 ps-4">
                           <li className="mb-5">Creative Study Pattern</li>
                           <li className="mb-5">Quick Crash Courses</li>
                           <li className="mb-5">Certification Awarded</li>
                           <li className="mb-5">Provided with Experimental Examples</li>
                         </ul>
-                        <a href="course-list-v1.html" className="btn btn-shark btn-wide lift">NEW COURSES</a>
                       </div>
                     </div>
                   </div>
@@ -65,7 +65,7 @@ const Institut = () => {
                   <div className="row">
                     <div className="col-md-6 col-lg-4 mb-6 mb-lg-0">
                       {/* Card */}
-                      <a href="blog-single.html" className="card px-6 py-5 px-md-7 py-md-6 shadow lift bg-mongoose">
+                      <div className="card px-6 py-5 px-md-7 py-md-6 shadow lift bg-mongoose">
                         <div className="mb-4 text-white icon-45">
                           {/* Icon */}
                           <svg width={40} height={40} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,20 +73,13 @@ const Institut = () => {
                             <path d="M20.4173 31.6665C20.189 31.6665 19.964 31.6048 19.7606 31.4815L15.0006 28.5515L10.2407 31.4815C9.85398 31.7198 9.37232 31.7282 8.97398 31.5082C8.57732 31.2865 8.33398 30.8682 8.33398 30.4165V7.9165H10.834V28.1798L14.344 26.0198C14.7473 25.7732 15.2523 25.7732 15.6556 26.0198L19.1656 28.1798V7.9165H21.6673V30.4165C21.6673 30.8682 21.424 31.2865 21.0273 31.5082C20.8373 31.6132 20.6273 31.6665 20.4173 31.6665Z" fill="currentColor" />
                           </svg>
                         </div>
-                        <h2 className="font-size-xxl text-white font-lora mb-5 fw-bold">Why study at Skola?</h2>
-                        <p className="font-montserrat text-capitalize line-clamp-3 mb-7 text-white font-size-sm line-height-md">There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-                        <div className="d-flex align-items-center text-white mb-1">
-                          <span className="me-3 fw-medium">Read More</span>
-                          {/* Icon */}
-                          <svg width={10} height={10} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.7779 4.6098L3.32777 0.159755C3.22485 0.0567475 3.08745 0 2.94095 0C2.79445 0 2.65705 0.0567475 2.55412 0.159755L2.2264 0.487394C2.01315 0.700889 2.01315 1.04788 2.2264 1.26105L5.96328 4.99793L2.22225 8.73895C2.11933 8.84196 2.0625 8.97928 2.0625 9.1257C2.0625 9.27228 2.11933 9.4096 2.22225 9.51269L2.54998 9.84025C2.65298 9.94325 2.7903 10 2.9368 10C3.0833 10 3.2207 9.94325 3.32363 9.84025L7.7779 5.38614C7.88107 5.2828 7.93774 5.14484 7.93741 4.99817C7.93774 4.85094 7.88107 4.71305 7.7779 4.6098Z" fill="currentColor" />
-                          </svg>
-                        </div>
-                      </a>
+                        <h2 className="font-size-xxl text-white font-lora mb-5 fw-bold">NEW GENERATION ?</h2>
+                        <p className="font-montserrat text-capitalize line-clamp-3 mb-7 text-white font-size-sm line-height-md">Discover limitless possibilities at New Generation! Our institute offers a transformative educational experience .</p>
+                      </div>
                     </div>
                     <div className="col-md-6 col-lg-4 mb-6 mb-lg-0">
                       {/* Card */}
-                      <a href="blog-single.html" className="card px-6 py-5 px-md-7 py-md-6 shadow lift">
+                      <div className="card px-6 py-5 px-md-7 py-md-6 shadow lift">
                         <div className="mb-4 text-biscay icon-45">
                           {/* Icon */}
                           <svg width={45} height={45} viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
@@ -95,20 +88,13 @@ const Institut = () => {
                             <path d="M23.3395 23.2902C23.0377 22.5658 21.9671 22.5879 21.7007 23.3302C21.5743 23.6822 21.6918 24.09 21.9878 24.3192C22.2741 24.5409 22.6738 24.5648 22.9837 24.3776C23.3496 24.1566 23.504 23.685 23.3395 23.2902Z" fill="currentColor" />
                           </svg>
                         </div>
-                        <h2 className="font-size-xxl font-lora mb-5 fw-bold text-biscay">Campus Life</h2>
-                        <p className="font-montserrat text-capitalize line-clamp-3 mb-7 font-size-sm line-height-md">We help them succeed in their career—to discover a field they’re passionate about and dare to lead it.</p>
-                        <div className="d-flex align-items-center mb-1 text-mongoose">
-                          <span className="me-3 fw-medium">Read More</span>
-                          {/* Icon */}
-                          <svg width={10} height={10} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.7779 4.6098L3.32777 0.159755C3.22485 0.0567475 3.08745 0 2.94095 0C2.79445 0 2.65705 0.0567475 2.55412 0.159755L2.2264 0.487394C2.01315 0.700889 2.01315 1.04788 2.2264 1.26105L5.96328 4.99793L2.22225 8.73895C2.11933 8.84196 2.0625 8.97928 2.0625 9.1257C2.0625 9.27228 2.11933 9.4096 2.22225 9.51269L2.54998 9.84025C2.65298 9.94325 2.7903 10 2.9368 10C3.0833 10 3.2207 9.94325 3.32363 9.84025L7.7779 5.38614C7.88107 5.2828 7.93774 5.14484 7.93741 4.99817C7.93774 4.85094 7.88107 4.71305 7.7779 4.6098Z" fill="currentColor" />
-                          </svg>
-                        </div>
-                      </a>
+                        <h2 className="font-size-xxl font-lora mb-5 fw-bold text-biscay">Diverse Programs </h2>
+                        <p className="font-montserrat text-capitalize line-clamp-3 mb-7 font-size-sm line-height-md"> We offer a wide range of programs across various disciplines, catering to diverse interests and career aspirations. </p>
+                      </div>
                     </div>
                     <div className="col-md-6 col-lg-4 mb-6 mb-lg-0">
                       {/* Card */}
-                      <a href="blog-single.html" className="card px-6 py-5 px-md-7 py-md-6 shadow lift bg-biscay">
+                      <div className="card px-6 py-5 px-md-7 py-md-6 shadow lift bg-biscay">
                         <div className="mb-4 text-white icon-45">
                           {/* Icon */}
                           <svg width={40} height={40} viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
@@ -123,16 +109,9 @@ const Institut = () => {
                             <path d="M23.7643 10.0416H6.19141C5.54422 10.0416 5.01953 10.5663 5.01953 11.2134V18.7447C5.01953 19.3919 5.54422 19.9166 6.19141 19.9166H23.7643C24.4115 19.9166 24.9362 19.3919 24.9362 18.7447V11.2134C24.9362 10.5663 24.4115 10.0416 23.7643 10.0416ZM22.5924 17.5729H7.36328V12.3854H22.5924V17.5729Z" fill="currentColor" />
                           </svg>
                         </div>
-                        <h2 className="font-size-xxl text-white font-lora mb-5 fw-bold">News &amp; Events</h2>
-                        <p className="font-montserrat text-capitalize line-clamp-3 mb-7 text-white font-size-sm line-height-md">We don’t just give students an education and experiences that set them up for success in a career.</p>
-                        <div className="d-flex align-items-center text-white mb-1">
-                          <span className="me-3 fw-medium">Read More</span>
-                          {/* Icon */}
-                          <svg width={10} height={10} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.7779 4.6098L3.32777 0.159755C3.22485 0.0567475 3.08745 0 2.94095 0C2.79445 0 2.65705 0.0567475 2.55412 0.159755L2.2264 0.487394C2.01315 0.700889 2.01315 1.04788 2.2264 1.26105L5.96328 4.99793L2.22225 8.73895C2.11933 8.84196 2.0625 8.97928 2.0625 9.1257C2.0625 9.27228 2.11933 9.4096 2.22225 9.51269L2.54998 9.84025C2.65298 9.94325 2.7903 10 2.9368 10C3.0833 10 3.2207 9.94325 3.32363 9.84025L7.7779 5.38614C7.88107 5.2828 7.93774 5.14484 7.93741 4.99817C7.93774 4.85094 7.88107 4.71305 7.7779 4.6098Z" fill="currentColor" />
-                          </svg>
-                        </div>
-                      </a>
+                        <h2 className="font-size-xxl text-white font-lora mb-5 fw-bold">Expert Faculty</h2>
+                        <p className="font-montserrat text-capitalize line-clamp-3 mb-7 text-white font-size-sm line-height-md">Our experienced faculty members are passionate about teaching and dedicated to your success. </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -144,7 +123,6 @@ const Institut = () => {
           <div className="row align-items-end mb-4 mb-md-7">
             <div className="col-md mb-4 mb-md-0">
               <h1 className="mb-1">Upcoming Events</h1>
-              <p className="font-size-lg mb-0 text-capitalize">Discover your perfect program in our courses.</p>
             </div>
             <div className="col-md-auto">
             <Link to="/Espace_User/AllFormation" className="d-flex align-items-center fw-medium">
@@ -166,7 +144,7 @@ const Institut = () => {
                 <div className="row gx-0 align-items-center">
                   {/* Image */}
                   <Link to={`/Espace_User/FormationSingle/${formation.id}`}   className="col-auto d-block mw-md-152" style={{maxWidth: '120px'}}>
-                    <img className="img-fluid rounded shadow-light-lg h-100 h-md-auto o-f-c" src={`../${formation.image}`} alt="..." />
+                    <img className="img-fluid rounded shadow-light-lg h-100 h-md-auto o-f-c"  src={`http://127.0.0.1:8000/images/${formation.image}`} alt="..." />
                   </Link>
                   {/* Body */}
                   <div className="col">

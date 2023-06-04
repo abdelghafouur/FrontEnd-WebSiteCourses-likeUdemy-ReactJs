@@ -145,19 +145,21 @@ const FormationSingle = () => {
             const response = await axios.post('http://127.0.0.1:8000/api/generate-atestation', {
               firstname: userInformation.firstname,
               lastname: userInformation.lastname,
+              title: course.title,
+              date: course.date,
+              duration: course.duration,
+              time: course.time,
+              location: course.location,
+              price: course.price,
             }, {
               responseType: 'blob', // Set the response type to 'blob' to receive binary data
-            } , {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
+            } );
       
             // Create a download link
             const downloadLink = document.createElement('a');
             const url = window.URL.createObjectURL(new Blob([response.data]));
             downloadLink.href = url;
-            downloadLink.setAttribute('download', 'certificate.pdf');
+            downloadLink.setAttribute('download', 'Ficher_Inscription.pdf');
             document.body.appendChild(downloadLink);
       
             // Trigger the download
@@ -179,7 +181,7 @@ const FormationSingle = () => {
                 const certificateData = {
                   certificate: base64data,
                 };
-                await axios.put(`http://127.0.0.1:8000/api/updateAtestationInscr/1/${userId}`, certificateData , {
+                await axios.put(`http://127.0.0.1:8000/api/updateAtestationInscr/${idFormation}/${userId}`, certificateData , {
                   headers: {
                     Authorization: `Bearer ${token}`,
                   },
@@ -197,7 +199,7 @@ const FormationSingle = () => {
         };
     const fetchUserFormationInsc= async () => {
           const formData = new FormData();
-              formData.append('formation_id', 1);
+              formData.append('formation_id', idFormation);
               formData.append('compte_id', userInformation.id);
                       try {
                           axios.post(`http://127.0.0.1:8000/api/FormationInscp`,formData,
@@ -230,7 +232,7 @@ const FormationSingle = () => {
         };
     const fetchFormation = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/FormationInscpget/1/${userInformation.id}`, {
+            const response = await axios.get(`http://127.0.0.1:8000/api/FormationInscpget/${idFormation}/${userInformation.id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -252,7 +254,7 @@ const FormationSingle = () => {
     const handleDownloadCertificate = async () => {
           try {
               const userId = userInformation.id; // Assuming you have the user's ID
-              const response = await axios.get(`http://127.0.0.1:8000/api/AtestationDown/1/${userId}`, {
+              const response = await axios.get(`http://127.0.0.1:8000/api/AtestationDown/${idFormation}/${userId}`, {
                   responseType: 'blob', // Set the response type to 'blob' to receive binary data
               } , {
                 headers: {
@@ -264,7 +266,7 @@ const FormationSingle = () => {
               const downloadLink = document.createElement('a');
               const url = window.URL.createObjectURL(new Blob([response.data]));
               downloadLink.href = url;
-              downloadLink.setAttribute('download', 'certificate.pdf');
+              downloadLink.setAttribute('download', 'Ficher_Inscription.pdf');
               document.body.appendChild(downloadLink);
         
               // Trigger the download
@@ -285,7 +287,7 @@ const FormationSingle = () => {
                 {/* EVENT SINGLE
             ================================================== */}
                 <div className="sk-thumbnail img-ratio-7">
-                <img src={`/../${course.image}`} alt="..." className="img-fluid" />
+                <img src={`http://127.0.0.1:8000/images/${course.image}`} alt="..." className="img-fluid" />
                 </div>
                 <div className="container">
                 <div className="row">
@@ -363,7 +365,7 @@ const FormationSingle = () => {
                         { Comments.slice(0, 8).map((comment)=>(
                             <li key={comment.id} className="media d-flex">
                             <div className="avatar avatar-xxl me-3 me-md-6 flex-shrink-0">
-                              <img src={`../${comment.user && comment.user.image }`} alt="..." className="avatar-img rounded-circle" />
+                              <img  src={`http://127.0.0.1:8000/images/${comment.user && comment.user.image }`} alt="..." className="avatar-img rounded-circle" />
                             </div>
                             <div className="media-body flex-grow-1">
                               <div className="d-md-flex align-items-center mb-5">

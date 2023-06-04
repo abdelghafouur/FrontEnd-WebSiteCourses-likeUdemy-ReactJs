@@ -18,6 +18,7 @@ const Allcourses = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [parameter1, setparameter] = useState(parameter);
   const [perPage] = useState(10);
   const token = localStorage.getItem('token');
 
@@ -74,6 +75,10 @@ const Allcourses = () => {
 
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((course) => selectedCategories.includes(course.category_id.toString()));
+      console.log(selectedCategories)
+      const nameCat = categories.find((catg) => catg.id == selectedCategories)
+      setparameter(nameCat.name);
+    
     }
 
     if (selectedRatings.length > 0) {
@@ -300,9 +305,9 @@ const Allcourses = () => {
                 <div className="row row-cols-md-2 mb-3 ">
                 {currentCourses.map(course => {
 
-              if (parameter) {
+              if (parameter1) {
                 // Apply filter when paramValue is available
-                if (course.category.name === parameter) {
+                if (course.category.name === parameter1) {
                   return (
                                 <div className="col-md pb-4 pb-md-7" key={course.id} >
                                 {/* Card */}
@@ -325,7 +330,7 @@ const Allcourses = () => {
                                         </Link>
                                     </div>
                                     <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="card-img sk-thumbnail d-block">
-                                      <img className="rounded shadow-light-lg" src={`../${course.image}`} alt="..." />
+                                      <img className="rounded shadow-light-lg" src={`http://127.0.0.1:8000/images/${course.image}`} alt="..." />
                                       </Link>
                                     <span className="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
                                       <span className="text-white text-uppercase fw-bold font-size-xs">{course.category.name}</span>
@@ -333,11 +338,7 @@ const Allcourses = () => {
                                   </div>
                                   {/* Footer */}
                                   <div className="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
-                                    <a href="instructors-single.html" className="d-block">
-                                      <div className="avatar sk-fade-right avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
-                                        <img src="../assets/img/avatars/avatar-1.jpg" alt="..." className="avatar-img rounded-circle" />
-                                      </div>
-                                    </a>
+                                    
                                     {/* Preheading */}
                                     <Link to={`/Espace_User/CourseSingle/${course.id}`} ><span className="mb-1 d-inline-block text-gray-800">{course.category.name}</span></Link>
                                     {/* Heading */}
@@ -410,7 +411,7 @@ const Allcourses = () => {
                         </Link>
                     </div>
                     <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="card-img sk-thumbnail d-block">
-                      <img className="rounded shadow-light-lg" src={`../${course.image}`} alt="..." />
+                      <img className="rounded shadow-light-lg" src={`http://127.0.0.1:8000/images/${course.image}`} alt="..." />
                       </Link>
                     <span className="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
                       <span className="text-white text-uppercase fw-bold font-size-xs">{course.category.name}</span>
@@ -418,16 +419,12 @@ const Allcourses = () => {
                   </div>
                   {/* Footer */}
                   <div className="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
-                    <a href="instructors-single.html" className="d-block">
-                      <div className="avatar sk-fade-right avatar-xl badge-float position-absolute top-0 right-0 mt-n6 me-5 rounded-circle shadow border border-white border-w-lg">
-                        <img src="../assets/img/avatars/avatar-1.jpg" alt="..." className="avatar-img rounded-circle" />
-                      </div>
-                    </a>
+                    
                     {/* Preheading */}
                     <Link to={`/Espace_User/CourseSingle/${course.id}`} ><span className="mb-1 d-inline-block text-gray-800">{course.category.name}</span></Link>
                     {/* Heading */}
                     <div className="position-relative">
-                      <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">Fashion Photography From Professional</h4></Link>
+                      <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{course.title}</h4></Link>
                       <div className="d-lg-flex align-items-end flex-wrap mb-n1">
                         <div className="star-rating mb-2 mb-lg-0 me-lg-3">
                           <div className="rating" style={{ width: `${ course.rating * 20}%` }} />

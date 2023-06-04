@@ -22,17 +22,17 @@ const ForgotPasswordForm = () => {
   };
 
   return (
-    <div classname="container022">
-      <div classname="col-md-4 offset-md-4 form form2">
-      <h2 classname="text-center">Forgot Password</h2>
+    <div className="container022">
+      <div className="col-md-4 offset-md-4 form form2">
+      <h1 >Forgot Password</h1>
         <form onSubmit={handleSubmit}>
-          <div classname="text-center">
-            <label classname="form-group" >Email:</label>
-            <input type="email" classname="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <div>
+            <label className="form-group" >Your Email:</label>
+            <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           {errorMessage && <p>{errorMessage}</p>}
           {successMessage && <p>{successMessage}</p>}
-          <button classname="form-control button" type="submit">Submit</button>
+          <button className="form-control button" type="submit">Submit</button>
         </form>
       </div>
     </div>
