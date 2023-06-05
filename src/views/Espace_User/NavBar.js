@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../function/useAuth';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import mylogo from '../../pic/mylogo.png'
 
 
 
@@ -295,6 +296,9 @@ const NavBar = () => {
             <header className="navbar navbar-expand-xl navbar-light bg-white border-bottom py-2 py-xl-4">
               <div className="container-fluid">
                 {/* Vertical Menu */}
+                <div className="bg-darken">
+            <img width='150px' height='110px' style={{marginTop:"-2px",marginLeft:"2px"}} src={mylogo} />
+            </div>
                 <ul className="navbar-nav navbar-vertical ms-xl-4 d-none d-xl-flex">
                   <li className="nav-item dropdown">
                     <a className="nav-link pb-4 mb-n4 px-0 pt-0" id="navbarVerticalMenu" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">

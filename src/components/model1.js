@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import pic1 from '../pic/login22.png'
 import pic3 from '../pic/login23.png'
 import pic2 from '../pic/logod3.png'
+import mylogo from '../pic/mylogo.png'
 import './model.css'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
@@ -204,7 +205,7 @@ export const Modal1 = ({ setShowModal ,setstylee,etat1,myclasse1,myclasse2}) => 
               </div>
               <div className="col-sm-6 div2">
                 <div className="maform">
-                    <img width='200px' height='120px' style={{marginTop:'-80px'}} src={pic2} />
+                    <img width='200px' height='100px' style={{marginTop:'-55px',marginBottom:"10px",marginLeft:'10px'}} src={mylogo} />
                     <form onSubmit={(event)=>Login(event)}>
                       <div className="group">      
                         <input type="email" name="email" onChange={(e)=>setemail(e.target.value)} required/>

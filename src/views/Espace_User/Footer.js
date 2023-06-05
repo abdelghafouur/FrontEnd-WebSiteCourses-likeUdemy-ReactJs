@@ -1,7 +1,7 @@
 import React  from 'react'
 import './styleAll.css'
 import { Link } from 'react-router-dom';
-
+import mylogo from '../../pic/mylogo.png'
 
 const Footer = () => { 
 
@@ -17,10 +17,11 @@ const Footer = () => {
                 <div className="row" id="accordionFooter">
                   <div className="col-12 col-md-4 col-lg-4">
                     {/* Brand */}
-                    <img src="../assets/img/brand.svg" alt="..." className="footer-brand img-fluid mb-4 h-60p" />
+                   {/* <img className="footer-brand img-fluid mb-4 h-60p"src={mylogo} /> */}
+                    <img className="footer-brand img-fluid" width='160px' height='120px'src={mylogo} />
                     {/* Text */}
                     <p className="text-gray-800 mb-4 font-size-sm-alone">
-                      329 Queensberry Street, North Melbourne VIC 3051, Australia.
+                    329 Imam Mousslim Mehamid Marrakech , Morocco.
                     </p>
                     {/* Social */}
                     <ul className="list-unstyled list-inline list-social mb-4 mb-md-0 mx-n2 text-white-70 font-size-sm">
@@ -239,7 +240,7 @@ const Footer = () => {
                   </div>
                   <div className="col-12 mt-md-5">
                     <div className="border-top border-white-10 pb-5 pt-6 py-md-4 text-center text-xl-start d-flex flex-column d-md-block d-xl-flex flex-xl-row align-items-center">
-                      <p className="text-gray-800 font-size-sm-alone d-block mb-0 mb-md-2 mb-xl-0 order-1 order-md-0 px-9 px-md-0">Copyright © 2021 CreativeLayers. All Right Reserved.</p>
+                      <p className="text-gray-800 font-size-sm-alone d-block mb-0 mb-md-2 mb-xl-0 order-1 order-md-0 px-9 px-md-0">Copyright © 2023 By abdelghafour&AYOOUB. All Right Reserved.</p>
                     </div>
                   </div>
                 </div> {/* / .row */}

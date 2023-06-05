@@ -14,6 +14,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import useAuth from '../../function/useAuth';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import mylogo from '../../pic/mylogo.png'
 
 
 const Index = () => { 
@@ -411,9 +412,12 @@ const Index = () => {
         <header className="navbar navbar-expand-xl navbar-dark">
           <div className="container containerNew">
 
-            {/* Vertical Menu */}
+            {/* Vertical Menu  .bg-darken .footer-brand*/}
             <ul className="navbar-nav navbar-vertical ms-xl-4 d-none d-xl-flex">
-              <li className="nav-item dropdown">
+              <div className="bg-darken">
+            <img width='180px' height='130px' className="footer-brand" style={{marginTop:"-18px",marginLeft:"2px"}} src={mylogo} />
+            </div>
+              <li className="nav-item dropdown" style={{marginLeft:"50px"}} >
                 <a className="nav-link pb-4 mb-n4 px-0 pt-0" id="navbarVerticalMenu" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
                   <div className="bg-white-10 rounded-xl py-3 px-5 d-flex align-items-center">
                     <span className="text-white fw-medium me-1">Courses</span>
