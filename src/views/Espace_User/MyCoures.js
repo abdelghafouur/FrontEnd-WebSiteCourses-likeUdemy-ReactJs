@@ -94,27 +94,27 @@ const MyCoures = () => {
               <div className="container pb-4 pb-xl-7 clrB">
                 <div className="row row-cols-md-2 row-cols-xl-3 mb-6 mb-xl-3">
                 {courses.map(course => 
-                  <div className="col-md pb-4 pb-md-7" key={course.id}>
+                  <div className="col-md pb-4 pb-md-7" key={course.course.id}>
                     {/* Card */}
                     <div className="card border shadow p-2 lift sk-fade">
                       {/* Image */}
                       <div className="card-zoom position-relative">
                         <div className="badge-float sk-fade-top top-0 right-0 mt-4 me-4">
-                          <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 me-1 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                          <Link to={`/Espace_User/CourseSingle/${course.course.id}`}  className="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 me-1 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
                             {/* Icon */}
                             <svg width={18} height={18} viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                               <path d="M17.8856 8.64995C17.7248 8.42998 13.8934 3.26379 8.99991 3.26379C4.10647 3.26379 0.274852 8.42998 0.114223 8.64974C-0.0380743 8.85843 -0.0380743 9.14147 0.114223 9.35016C0.274852 9.57013 4.10647 14.7363 8.99991 14.7363C13.8934 14.7363 17.7248 9.5701 17.8856 9.35034C18.0381 9.14169 18.0381 8.85843 17.8856 8.64995ZM8.99991 13.5495C5.39537 13.5495 2.27345 10.1206 1.3493 8.99965C2.27226 7.87771 5.38764 4.4506 8.99991 4.4506C12.6043 4.4506 15.726 7.8789 16.6505 9.00046C15.7276 10.1224 12.6122 13.5495 8.99991 13.5495Z" fill="currentColor" />
                               <path d="M8.9999 5.43958C7.03671 5.43958 5.43945 7.03683 5.43945 9.00003C5.43945 10.9632 7.03671 12.5605 8.9999 12.5605C10.9631 12.5605 12.5603 10.9632 12.5603 9.00003C12.5603 7.03683 10.9631 5.43958 8.9999 5.43958ZM8.9999 11.3736C7.69103 11.3736 6.62629 10.3089 6.62629 9.00003C6.62629 7.6912 7.69107 6.62642 8.9999 6.62642C10.3087 6.62642 11.3735 7.6912 11.3735 9.00003C11.3735 10.3089 10.3088 11.3736 8.9999 11.3736Z" fill="currentColor" />
                             </svg>
                           </Link>
-                          <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
+                          <Link to={`/Espace_User/CourseSingle/${course.course.id}`}  className="btn btn-xs btn-dark text-white rounded-circle lift opacity-dot-7 p-2 d-inline-flex justify-content-center align-items-center w-36 h-36">
                             {/* Icon */}
                             <svg width={16} height={16} viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                               <path d="M11.2437 1.20728C10.0203 1.20728 8.87397 1.66486 7.99998 2.48357C7.12598 1.66486 5.97968 1.20728 4.7563 1.20728C2.13368 1.20728 0 3.341 0 5.96366C0 7.2555 0.425164 8.52729 1.26366 9.74361C1.91197 10.6841 2.80887 11.5931 3.92937 12.4454C5.809 13.8753 7.66475 14.6543 7.74285 14.6867L7.99806 14.7928L8.25384 14.6881C8.33199 14.6562 10.1889 13.8882 12.0696 12.4635C13.1907 11.6142 14.0881 10.7054 14.7367 9.7625C15.575 8.54385 16 7.26577 16 5.96371C16 3.341 13.8663 1.20728 11.2437 1.20728ZM8.00141 13.3353C6.74962 12.7555 1.33966 10.0142 1.33966 5.96366C1.33966 4.07969 2.87237 2.54698 4.75634 2.54698C5.827 2.54698 6.81558 3.03502 7.46862 3.88598L8.00002 4.57845L8.53142 3.88598C9.18446 3.03502 10.173 2.54698 11.2437 2.54698C13.1276 2.54698 14.6604 4.07969 14.6604 5.96366C14.6603 10.0433 9.25265 12.7613 8.00141 13.3353Z" fill="currentColor" />
                             </svg>
                             </Link>
                         </div>
-                        <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="card-img sk-thumbnail d-block">
+                        <Link to={`/Espace_User/CourseSingle/${course.course.id}`}  className="card-img sk-thumbnail d-block">
                           <img className="rounded shadow-light-lg" src={`http://127.0.0.1:8000/images/${course.course.image}`}  alt="..." />
                           </Link>
                         <span className="badge sk-fade-bottom badge-lg badge-orange badge-pill badge-float bottom-0 left-0 mb-4 ms-4">
@@ -124,10 +124,10 @@ const MyCoures = () => {
                       {/* Footer */}
                       <div className="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
                         {/* Preheading */}
-                        <Link to={`/Espace_User/CourseSingle/${course.id}`} ><span className="mb-1 d-inline-block text-gray-800">{course.course.category.name}</span></Link>
+                        <Link to={`/Espace_User/CourseSingle/${course.course.id}`} ><span className="mb-1 d-inline-block text-gray-800">{course.course.category.name}</span></Link>
                         {/* Heading */}
                         <div className="position-relative">
-                          <Link to={`/Espace_User/CourseSingle/${course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{course.course.title}</h4></Link>
+                          <Link to={`/Espace_User/CourseSingle/${course.course.id}`}  className="d-block stretched-link"><h4 className="line-clamp-2 h-md-48 h-lg-58 me-md-6 me-lg-10 me-xl-4 mb-2">{course.course.title}</h4></Link>
                           <div className="d-lg-flex align-items-end flex-wrap mb-n1">
                             <div className="star-rating mb-2 mb-lg-0 me-lg-3">
                               <div className="rating" style={{ width: `${ course.course.rating * 20}%` }}/>

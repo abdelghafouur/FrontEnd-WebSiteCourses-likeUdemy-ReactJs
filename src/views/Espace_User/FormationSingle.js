@@ -458,7 +458,7 @@ const FormationSingle = () => {
                         {(Object.keys(myEtat).length === 0 )? (
                             <button className="btn btn-primary btn-block mb-3" onClick={fetchUserFormationInsc}  type="button" name="button">BOOK NOW</button>
                                 ) : (
-                                    <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" onClick={handleDownloadCertificate} name="button">Download Certificate</button>
+                                    <button className="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" onClick={handleDownloadCertificate} name="button">Download atestation</button>
                                 )}
                         
                         
